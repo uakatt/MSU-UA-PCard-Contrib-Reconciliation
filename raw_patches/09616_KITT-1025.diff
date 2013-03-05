@@ -1,0 +1,34 @@
+Index: financial-system/kfs/branches/mod-hlo/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag
+===================================================================
+--- financial-system/kfs/branches/mod-hlo/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag	(revision 9615)
++++ financial-system/kfs/branches/mod-hlo/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag	(revision 9616)
+@@ -98,7 +98,7 @@
+ 	           <th> <div align="right"><kul:htmlAttributeLabel attributeEntry="${transactionAttributes.transactionSalesTaxAmount}"/></div></th>
+ 	           <td valign=top><kul:htmlControlAttribute attributeEntry="${transactionAttributes.transactionSalesTaxAmount}" property="document.transactionEntries[${ctr}].transactionSalesTaxAmount" readOnly="true"/></td>
+ 	           <th> <div align="right"><kul:htmlAttributeLabel attributeEntry="${transactionAttributes.transactionTaxExemptIndicator}"/></div></th>
+-	           <td valign=top><kul:htmlControlAttribute attributeEntry="${transactionAttributes.transactionTaxExemptIndicator}" property="document.transactionEntries[${ctr}].transactionTaxExemptIndicator" readOnly="false"/></td>
++	           <td valign=top><kul:htmlControlAttribute attributeEntry="${transactionAttributes.transactionTaxExemptIndicator}" property="document.transactionEntries[${ctr}].transactionTaxExemptIndicator" readOnly="${!canEdit}"/></td>
+ 	      </c:if>
+ 	      <c:if test="${!KualiForm.enableSalesTaxIndicator}">
+ 	           <html:hidden write="false" property="document.transactionEntries[${ctr}].transactionSalesTaxAmount"/>
+@@ -109,7 +109,7 @@
+ 	   <tr>
+ 	      <c:if test="${KualiForm.enableSalesTaxIndicator}">
+ 	           <th> <div align="right"><kul:htmlAttributeLabel attributeEntry="${transactionAttributes.transactionEditableSalesTaxAmount}"/></div></th>
+-	           <td valign=top><kul:htmlControlAttribute attributeEntry="${transactionAttributes.transactionEditableSalesTaxAmount}" property="document.transactionEntries[${ctr}].transactionEditableSalesTaxAmount" readOnly="false"/></td>
++	           <td valign=top><kul:htmlControlAttribute attributeEntry="${transactionAttributes.transactionEditableSalesTaxAmount}" property="document.transactionEntries[${ctr}].transactionEditableSalesTaxAmount" readOnly="${!canEdit}"/></td>
+ 	           <td colspan="2">&nbsp;</td>
+ 	      </c:if>
+ 	      <c:if test="${!KualiForm.enableSalesTaxIndicator}">
+Index: financial-system/kfs/branches/mod-hlo/work/web-root/jsp/fp/ProcurementCard.jsp
+===================================================================
+--- financial-system/kfs/branches/mod-hlo/work/web-root/jsp/fp/ProcurementCard.jsp	(revision 9615)
++++ financial-system/kfs/branches/mod-hlo/work/web-root/jsp/fp/ProcurementCard.jsp	(revision 9616)
+@@ -23,6 +23,7 @@
+ 
+ 	<sys:documentOverview editingMode="${KualiForm.editingMode}" />
+ 
++	<c:set var="canEdit" value="${KualiForm.documentActions[Constants.KUALI_ACTION_CAN_EDIT]}" scope="request" />
+ 	<fp:procurementCardTransactions
+ 		editingMode="${KualiForm.editingMode}"
+ 		editableAccounts="${KualiForm.editableAccounts}" />

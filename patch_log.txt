@@ -54,3 +54,25 @@ Changed paths:
 
 KITT-909 Prevent Cardholder Self Reconciliation
 ------------------------------------------------------------------------
+------------------------------------------------------------------------
+r9616 | hlo | 2010-05-02 23:06:39 -0700 (Sun, 02 May 2010) | 1 line
+Changed paths:
+   M /financial-system/kfs/branches/mod-hlo/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag
+   M /financial-system/kfs/branches/mod-hlo/work/web-root/jsp/fp/ProcurementCard.jsp
+
+KITT-1025 Added canEdit variable and applied it to PCDO.
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r9617 | hlo | 2010-05-03 11:21:01 -0700 (Mon, 03 May 2010) | 1 line
+Changed paths:
+   M /financial-system/kfs/branches/mod-hlo/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag
+
+KITT-1025 Added canEdit variable.
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r9618 | hlo | 2010-05-03 12:16:17 -0700 (Mon, 03 May 2010) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag
+
+KITT-1025 Merging code; added canEdit variable.
+------------------------------------------------------------------------

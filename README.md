@@ -32,6 +32,8 @@ This is a list of Jira tickets at the University of Arizona that relate to this 
 
 * **KITT-845**: (Add sales tax, use tax fields to PCard as provided by UA)<br />
   revisions: #8231, #8233, #8300, #8394, #8432
+* **KITT-1025**: (Make Fields Read-Only When PCDO is FINAL)<br />
+  revisions: #9616, #9617, #9618
 * **KITT-909**: (Prevent Cardholder Self Reconciliation )<br />
   revisions: #9201
 
@@ -60,6 +62,11 @@ src/org/kuali/kfs...
 ```
 
 * [`patches/08231_KITT-845_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/08231_KITT-845_cleaned.diff) is the patch file for #8231.
+* [`patches/08394_KITT-845_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/08394_KITT-845_cleaned.diff) is the patch file for #8394.
+* [`patches/09616_KITT-1025_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/09616_KITT-1025_cleaned.diff) is the patch file for #9616.
+* [`patches/09617_KITT-1025_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/09617_KITT-1025_cleaned.diff) is the patch file for #9617.
+* [`patches/09618_KITT-1025_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/09618_KITT-1025_cleaned.diff) is the patch file for #9618.
+* [`patches/09201_KITT-909_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/09201_KITT-909_cleaned.diff) is the patch file for #9201.
 
 <h2>Revisions</h2>
 
@@ -80,11 +87,38 @@ file for every revision listed below for the following reasons:
 *   \#8231 was committed against KITT-845 on 2010-03-04 02:48:57 UTC by <strong>hlo</strong>.
 
     > KITT-845
+*   \#8394 was committed against KITT-845 on 2010-03-09 22:46:20 UTC by <strong>hlo</strong>.
+
+    > Merging KITT-845
+*   \#9201 was committed against KITT-909 on 2010-04-14 18:26:30 UTC by <strong>jwingate</strong>.
+
+    > KITT-909 Prevent Cardholder Self Reconciliation
+*   \#9616 was committed against KITT-1025 on 2010-05-03 06:06:39 UTC by <strong>hlo</strong>.
+
+    > KITT-1025 Added canEdit variable and applied it to PCDO.
+*   \#9617 was committed against KITT-1025 on 2010-05-03 18:21:01 UTC by <strong>hlo</strong>.
+
+    > KITT-1025 Added canEdit variable.
+*   \#9618 was committed against KITT-1025 on 2010-05-03 19:16:17 UTC by <strong>hlo</strong>.
+
+    > KITT-1025 Merging code; added canEdit variable.
 
 <h2>Files</h2>
 
-Files **modified** for this modification (6 files)
+Files **modified** for this modification (18 files)
 
+    /financial-system/kfs/branches/3.0/work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardTransactionDetail.java
+    /financial-system/kfs/branches/3.0/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardTransactionDetail.xml
+    /financial-system/kfs/branches/3.0/work/src/edu/arizona/kfs/fp/document/web/struts/ProcurementCardForm.java
+    /financial-system/kfs/branches/3.0/work/src/edu/arizona/kfs/fp/ojb-fp.xml
+    /financial-system/kfs/branches/3.0/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java
+    /financial-system/kfs/branches/3.0/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag
+    /financial-system/kfs/branches/mod-hlo/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag
+    /financial-system/kfs/branches/mod-hlo/work/web-root/jsp/fp/ProcurementCard.jsp
+    /financial-system/kfs/branches/mod-jwingate/work/src/arizona-ApplicationResources.properties
+    /financial-system/kfs/branches/mod-jwingate/work/src/com/rsmart/kuali/kfs/fp/document/ProcurementCardDocument.java
+    /financial-system/kfs/branches/mod-jwingate/work/src/com/rsmart/kuali/kfs/fp/document/validation/impl/ProcurementCardHolderDetailRule.java
+    /financial-system/kfs/branches/mod-jwingate/work/src/com/rsmart/kuali/kfs/fp/identity/ProcurementCardReconcilerDerivedRoleTypeServiceImpl.java
     /work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardTransactionDetail.java
     /work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardTransactionDetail.xml
     /work/src/edu/arizona/kfs/fp/document/web/struts/ProcurementCardForm.java
@@ -96,12 +130,13 @@ Files **modified** for this modification (6 files)
 
 For each file that was changed or added for this modification, I've looked at its history in subversion (`svn log <file_name>`) to find whether later fixes were committed against this modification that I might have missed. There were some :) They may be fixes to the modification, or further enhancements, or changes completely unrelated. Please contact the UA for more information about a given revision number, or Jira ticket. Here they are:
 
-*   **#9618** touches `/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag`.
-
-    > KITT-1025 Merging code; added canEdit variable.
 *   **#9670** touches `/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardTransactionDetail.xml`.
 
     > KITT-1011 - PCard datadictionary changes to allow negative amounts
+*   **#13583** touches `/financial-system/kfs/branches/mod-jwingate/work/src/com/rsmart/kuali/kfs/fp/document/ProcurementCardDocument.java`.
+
+    > Merge from Trunk 9/27
+
 *   **#13968** touches `/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardTransactionDetail.xml`.
 
     > KFSI-2609/KITT-1769 PCDO Enhancements Part 1 
@@ -136,6 +171,7 @@ For each file that was changed or added for this modification, I've looked at it
 The following files were ignored here:
 
     ojb-fp.xml
+    arizona-ApplicationResources.properties
 
 This means, for example, that `ojb-fp.xml` was changed for this modification, but `ojb-fp.xml`'s history was not used to build this list of revisions.
 

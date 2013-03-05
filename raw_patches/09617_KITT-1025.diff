@@ -1,0 +1,12 @@
+Index: financial-system/kfs/branches/mod-hlo/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag
+===================================================================
+--- financial-system/kfs/branches/mod-hlo/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag	(revision 9616)
++++ financial-system/kfs/branches/mod-hlo/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag	(revision 9617)
+@@ -29,6 +29,7 @@
+   <c:set var="transactionAttributes" value="${DataDictionary.ProcurementCardTransactionDetail.attributes}" />
+   <c:set var="vendorAttributes" value="${DataDictionary.ProcurementCardVendor.attributes}" />
+   <c:set var="cardAttributes" value="${DataDictionary.ProcurementCardHolder.attributes}" />
++  <c:set var="canEdit" value="${KualiForm.documentActions[Constants.KUALI_ACTION_CAN_EDIT]}" scope="request" />
+ 	
+   <div class="tab-container" align="center">
+   <logic:iterate indexId="ctr" name="KualiForm" property="document.transactionEntries" id="currentTransaction">

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+ 
+  <changeSet id="$Revision: $" author="$Author: $">
+    <sql><![CDATA[
+		ALTER TABLE FP_PRCRMNT_TRN_DTL_T
+		ADD TRN_EDITABLE_SALES_TAX_AMT decimal(19,2);  
+      ]]>
+    </sql>
+    <rollback>
+      <sql><![CDATA[
+		ALTER TABLE FP_PRCRMNT_TRN_DTL_T 
+		DROP COLUMN TRN_EDITABLE_SALES_TAX_AMT;
+	    ]]>
+      </sql>
+    </rollback>
+  </changeSet>
+</databaseChangeLog>
