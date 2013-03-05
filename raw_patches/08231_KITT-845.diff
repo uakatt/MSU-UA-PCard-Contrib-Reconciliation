@@ -1,0 +1,160 @@
+Index: financial-system/kfs/trunk/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java
+===================================================================
+--- financial-system/kfs/trunk/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java	(revision 8230)
++++ financial-system/kfs/trunk/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java	(revision 8231)
+@@ -207,12 +207,4 @@
+         return "targetAccountingLines";
+     }
+     
+-    /**
+-     * Customization for UA Sales Tax Amount and Tax Exempt Indicator.
+-     * This method returns the value of the ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND system parameter.
+-     * @return
+-     */
+-    public boolean getEnableSalesTaxIndicator() {        
+-        return SpringContext.getBean(ParameterService.class).getIndicatorParameter(ProcurementCardDocument.class, AZKFSConstants.ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND);
+-    }
+ }
+Index: financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardTransactionDetail.xml
+===================================================================
+--- financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardTransactionDetail.xml	(revision 8230)
++++ financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardTransactionDetail.xml	(revision 8231)
+@@ -100,7 +100,8 @@
+         <ref bean="ProcurementCardTransactionDetail-procurementCardLevel3Transport.issuingCarrier" />
+         <ref bean="ProcurementCardTransactionDetail-procurementCardLevel3Transport.totalFare" />
+         <ref bean="ProcurementCardTransactionDetail-procurementCardLevel3Transport.totalFees" />
+-        <ref bean="ProcurementCardTransactionDetail-procurementCardLevel3Transport.totalTaxes" />
++        <ref bean="ProcurementCardTransactionDetail-procurementCardLevel3Transport.totalTaxes" /> 
++        <ref bean="ProcurementCardTransactionDetail-editableSalesTaxAmount" />
+       </list>
+     </property>
+   </bean>
+@@ -652,6 +653,29 @@
+   <bean id="ProcurementCardTransactionDetail-procurementCardLevel3Transport.totalTaxes-parentBean" parent="ProcurementCardLevel3Transport-totalTaxes" abstract="true">
+     <property name="name" value="procurementCardLevel3Transport.totalTaxes" />
+   </bean>
++  
++  <bean id="ProcurementCardTransactionDetail-transactionSalesTaxAmount" parent="ProcurementCardTransactionDetail-transactionSalesTaxAmount-parentBean">
++    <property name="label" value="Sales Tax Amount"/>
++  </bean>
++
++  <bean id="ProcurementCardTransactionDetail-transactionTaxExemptIndicator" parent="ProcurementCardTransactionDetail-transactionTaxExemptIndicator-parentBean">
++    <property name="label" value="Tax Exempt Indictaor"/>
++  </bean>
++  
++  <bean id="ProcurementCardTransactionDetail-editableSalesTaxAmount" parent="ProcurementCardTransactionDetail-editableSalesTaxAmount-parentBean"/>
++
++  <bean id="ProcurementCardTransactionDetail-editableSalesTaxAmount-parentBean" abstract="true" parent="AttributeDefinition">
++    <property name="name" value="transactionEditableSalesTaxAmount"/>
++    <property name="label" value="Enter Sales Tax"/>
++    <property name="shortLabel" value="Sales Tax"/>
++    <property name="maxLength" value="19"/>
++    <property name="validationPattern">
++      <bean parent="FloatingPointValidationPattern"/>
++    </property>
++    <property name="control">
++      <bean parent="TextControlDefinition" p:size="21"/>
++    </property>    
++  </bean>
+    
+ <!-- Business Object Inquiry Definition -->
+ 
+Index: financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardTransactionDetail.java
+===================================================================
+--- financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardTransactionDetail.java	(revision 8230)
++++ financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardTransactionDetail.java	(revision 8231)
+@@ -54,6 +54,8 @@
+     private List<ProcurementCardLevel3TempSvc> procurementCardLevel3TempSvcs;
+     private List<ProcurementCardLevel3TransportLeg> procurementCardLevel3TransportLegs;   
+     
++    private KualiDecimal transactionEditableSalesTaxAmount;
++    
+     /**
+      * Default constructor.
+      */
+@@ -277,6 +279,22 @@
+     } */
+ 
+     /**
++     * Gets the transactionEditableSalesTaxAmount attribute. 
++     * @return Returns the transactionEditableSalesTaxAmount.
++     */
++    public KualiDecimal getTransactionEditableSalesTaxAmount() {
++        return transactionEditableSalesTaxAmount;
++    }
++
++    /**
++     * Sets the transactionEditableSalesTaxAmount attribute value.
++     * @param transactionEditableSalesTaxAmount The transactionEditableSalesTaxAmount to set.
++     */
++    public void setTransactionEditableSalesTaxAmount(KualiDecimal transactionEditableSalesTaxAmount) {
++        this.transactionEditableSalesTaxAmount = transactionEditableSalesTaxAmount;
++    }
++
++    /**
+      * @see org.kuali.rice.kns.bo.BusinessObjectBase#toStringMapper()
+      */
+     protected LinkedHashMap toStringMapper() {
+Index: financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/ojb-fp.xml
+===================================================================
+--- financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/ojb-fp.xml	(revision 8230)
++++ financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/ojb-fp.xml	(revision 8231)
+@@ -532,6 +532,7 @@
+     <field-descriptor name="transactionCycleStartDate" column="TRN_CYCLE_STRT_DT" jdbc-type="DATE" />
+     <field-descriptor name="transactionCycleEndDate" column="TRN_CYCLE_END_DT" jdbc-type="DATE" />
+     <field-descriptor name="transactionTotalAmount" column="TRN_TOT_AMT" jdbc-type="DECIMAL" conversion="org.kuali.rice.kns.util.OjbKualiDecimalFieldConversion" />
++	<field-descriptor name="transactionEditableSalesTaxAmount" column="TRN_EDITABLE_SALES_TAX_AMT" jdbc-type="DECIMAL" conversion="org.kuali.rice.kns.util.OjbKualiDecimalFieldConversion" />
+     <reference-descriptor name="procurementCardVendor" class-ref="org.kuali.kfs.fp.businessobject.ProcurementCardVendor" auto-retrieve="true" auto-update="object" auto-delete="object" proxy="true" >
+         <foreignkey field-ref="documentNumber" />
+         <foreignkey field-ref="financialDocumentTransactionLineNumber" />
+Index: financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/document/web/struts/ProcurementCardForm.java
+===================================================================
+--- financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/document/web/struts/ProcurementCardForm.java	(revision 8230)
++++ financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/document/web/struts/ProcurementCardForm.java	(revision 8231)
+@@ -78,4 +78,13 @@
+         setDocument(procurementCardDocument);
+     }    
+     // KITT-636 end
++    
++    /**
++     * Customization for UA Sales Tax Amount and Tax Exempt Indicator.
++     * This method returns the value of the ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND system parameter.
++     * @return
++     */
++    public boolean getEnableSalesTaxIndicator() {        
++        return SpringContext.getBean(ParameterService.class).getIndicatorParameter(ProcurementCardDocument.class, AZKFSConstants.ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND);
++    }
+ }
+Index: financial-system/kfs/trunk/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag
+===================================================================
+--- financial-system/kfs/trunk/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag	(revision 8230)
++++ financial-system/kfs/trunk/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag	(revision 8231)
+@@ -94,7 +94,7 @@
+ 	   <tr>
+ 	      <c:if test="${KualiForm.enableSalesTaxIndicator}">
+ 	           <th> <div align="right"><kul:htmlAttributeLabel attributeEntry="${transactionAttributes.transactionSalesTaxAmount}"/></div></th>
+-	           <td valign=top><kul:htmlControlAttribute attributeEntry="${transactionAttributes.transactionSalesTaxAmount}" property="document.transactionEntries[${ctr}].transactionSalesTaxAmount" readOnly="false"/></td>
++	           <td valign=top><kul:htmlControlAttribute attributeEntry="${transactionAttributes.transactionSalesTaxAmount}" property="document.transactionEntries[${ctr}].transactionSalesTaxAmount" readOnly="true"/></td>
+ 	           <th> <div align="right"><kul:htmlAttributeLabel attributeEntry="${transactionAttributes.transactionTaxExemptIndicator}"/></div></th>
+ 	           <td valign=top><kul:htmlControlAttribute attributeEntry="${transactionAttributes.transactionTaxExemptIndicator}" property="document.transactionEntries[${ctr}].transactionTaxExemptIndicator" readOnly="false"/></td>
+ 	      </c:if>
+@@ -102,7 +102,18 @@
+ 	           <html:hidden write="false" property="document.transactionEntries[${ctr}].transactionSalesTaxAmount"/>
+ 	           <html:hidden write="false" property="document.transactionEntries[${ctr}].transactionTaxExemptIndicator"/>
+ 	      </c:if>
+-	   </tr>       
++	   </tr>
++	   
++	   <tr>
++	      <c:if test="${KualiForm.enableSalesTaxIndicator}">
++	           <th> <div align="right"><kul:htmlAttributeLabel attributeEntry="${transactionAttributes.transactionEditableSalesTaxAmount}"/></div></th>
++	           <td valign=top><kul:htmlControlAttribute attributeEntry="${transactionAttributes.transactionEditableSalesTaxAmount}" property="document.transactionEntries[${ctr}].transactionEditableSalesTaxAmount" readOnly="false"/></td>
++	           <td colspan="2">&nbsp;</td>
++	      </c:if>
++	      <c:if test="${!KualiForm.enableSalesTaxIndicator}">
++	           <html:hidden write="false" property="document.transactionEntries[${ctr}].transactionEditableSalesTaxAmount"/>
++	      </c:if>	   
++	   </tr>
+     </table>   
+ 	
+     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="datatable">

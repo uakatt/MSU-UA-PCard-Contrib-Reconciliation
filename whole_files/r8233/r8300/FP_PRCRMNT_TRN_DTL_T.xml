@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+ 
+  <changeSet id="$Revision$" author="$Author$">
+    <addColumn tableName="FP_PRCRMNT_TRN_DTL_T">
+      <column name="TRN_EDITABLE_SALES_TAX_AMT" type="decimal(19,2)" />
+    </addColumn>  
+  </changeSet>
+</databaseChangeLog>

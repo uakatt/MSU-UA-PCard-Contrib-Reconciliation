@@ -1,0 +1,16 @@
+Index: financial-system/kfs-cfg-dbs/trunk/latest/tab/FP_PRCRMNT_TRN_DTL_T.xml
+===================================================================
+--- financial-system/kfs-cfg-dbs/trunk/latest/tab/FP_PRCRMNT_TRN_DTL_T.xml	(revision 8299)
++++ financial-system/kfs-cfg-dbs/trunk/latest/tab/FP_PRCRMNT_TRN_DTL_T.xml	(revision 8300)
+@@ -7,8 +7,8 @@
+          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+  
+   <changeSet id="$Revision$" author="$Author$">
+-    <modifyColumn tableName="FP_PRCRMNT_TRN_DTL_T">
++    <addColumn tableName="FP_PRCRMNT_TRN_DTL_T">
+       <column name="TRN_EDITABLE_SALES_TAX_AMT" type="decimal(19,2)" />
+-    </modifyColumn>  
++    </addColumn>  
+   </changeSet>
+ </databaseChangeLog>
+\ No newline at end of file

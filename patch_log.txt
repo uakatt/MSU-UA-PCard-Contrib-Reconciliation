@@ -1,0 +1,56 @@
+------------------------------------------------------------------------
+r8231 | hlo | 2010-03-03 18:48:57 -0800 (Wed, 03 Mar 2010) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardTransactionDetail.java
+   M /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardTransactionDetail.xml
+   M /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/document/web/struts/ProcurementCardForm.java
+   M /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/ojb-fp.xml
+   M /financial-system/kfs/trunk/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java
+   M /financial-system/kfs/trunk/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag
+
+KITT-845
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r8233 | hlo | 2010-03-03 18:53:48 -0800 (Wed, 03 Mar 2010) | 1 line
+Changed paths:
+   A /financial-system/kfs-cfg-dbs/trunk/latest/tab/FP_PRCRMNT_TRN_DTL_T.xml
+
+KITT-845
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r8300 | hlo | 2010-03-05 09:53:12 -0800 (Fri, 05 Mar 2010) | 1 line
+Changed paths:
+   M /financial-system/kfs-cfg-dbs/trunk/latest/tab/FP_PRCRMNT_TRN_DTL_T.xml
+
+KITT-845 Fixing error: "modify" should be "add".
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r8394 | hlo | 2010-03-09 14:46:20 -0800 (Tue, 09 Mar 2010) | 1 line
+Changed paths:
+   M /financial-system/kfs/branches/3.0/work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardTransactionDetail.java
+   M /financial-system/kfs/branches/3.0/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardTransactionDetail.xml
+   M /financial-system/kfs/branches/3.0/work/src/edu/arizona/kfs/fp/document/web/struts/ProcurementCardForm.java
+   M /financial-system/kfs/branches/3.0/work/src/edu/arizona/kfs/fp/ojb-fp.xml
+   M /financial-system/kfs/branches/3.0/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java
+   M /financial-system/kfs/branches/3.0/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag
+
+Merging KITT-845
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r8432 | hlo | 2010-03-10 11:06:46 -0800 (Wed, 10 Mar 2010) | 1 line
+Changed paths:
+   A /financial-system/kfs-cfg-dbs/trunk/update/KITT-845.xml
+   M /financial-system/kfs-cfg-dbs/trunk/update.xml
+
+KITT-845
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r9201 | jwingate | 2010-04-14 11:26:30 -0700 (Wed, 14 Apr 2010) | 1 line
+Changed paths:
+   M /financial-system/kfs/branches/mod-jwingate/work/src/arizona-ApplicationResources.properties
+   M /financial-system/kfs/branches/mod-jwingate/work/src/com/rsmart/kuali/kfs/fp/document/ProcurementCardDocument.java
+   M /financial-system/kfs/branches/mod-jwingate/work/src/com/rsmart/kuali/kfs/fp/document/validation/impl/ProcurementCardHolderDetailRule.java
+   M /financial-system/kfs/branches/mod-jwingate/work/src/com/rsmart/kuali/kfs/fp/identity/ProcurementCardReconcilerDerivedRoleTypeServiceImpl.java
+
+KITT-909 Prevent Cardholder Self Reconciliation
+------------------------------------------------------------------------
