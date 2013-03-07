@@ -51,10 +51,10 @@ This is a list of Jira tickets at the University of Arizona that relate to this 
 <h2>Liquibase Changesets</h2>
 
 * `latest/tab/FP_PRCRMNT_TRN_DTL_T.xml` saw the following activity:
-  * created in #8233 (resultant file: [`whole_files/r8233/FP_PRCRMNT_TRN_DTL_T.xml`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/whole_files/r8233/FP_PRCRMNT_TRN_DTL_T.xml)).
+  * created in #8233 (resultant file: [`whole_files/r8233/FP_PRCRMNT_TRN_DTL_T.xml`](whole_files/r8233/FP_PRCRMNT_TRN_DTL_T.xml)).
   * changed in [#8300](https://subversion.uits.arizona.edu/kitt-anon/kitt/!svn/bc/8300//financial-system/kfs-cfg-dbs/trunk/latest/tab/FP_PRCRMNT_TRN_DTL_T.xml).
 * `update/KITT-845.xml` saw the following activity:
-  * created in #8432 (resultant file: [`whole_files/r8432/KITT-845.xml`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/whole_files/r8432/KITT-845.xml)).
+  * created in #8432 (resultant file: [`whole_files/r8432/KITT-845.xml`](whole_files/r8432/KITT-845.xml)).
 
 (3 changes among 2 files)
 
@@ -72,23 +72,23 @@ has been modified to:
 src/org/kuali/kfs...
 ```
 
-* [`patches/01108-01109_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/01108-01109_KITT-235_cleaned.diff) is the patch file for #01108 through #01109.
-* [`patches/01638-01640_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/01638-01640_KITT-235_cleaned.diff) is the patch file for #01638 through #01640.
-* [`patches/02239-02244_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/02239-02244_KITT-235_cleaned.diff) is the patch file for #02239 through #02244.
-* [`patches/02640_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/02640_KITT-235_cleaned.diff) is the patch file for #02640.
-* [`patches/03149-03150_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/03149-03150_KITT-235_cleaned.diff) is the patch file for #03149 through #03150.
-* [`patches/03152-03154_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/03152-03154_KITT-235_cleaned.diff) is the patch file for #03152 through #03154.
-* [`patches/03804-03805_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/03804-03805_KITT-235_cleaned.diff) is the patch file for #03804 through #03805.
-* [`patches/03938_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/03938_KITT-235_cleaned.diff) is the patch file for #03938.
-* [`patches/04010_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/04010_KITT-235_cleaned.diff) is the patch file for #04010.
-* [`patches/04560_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/04560_KITT-235_cleaned.diff) is the patch file for #04560.
-* [`patches/05210-05211_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/05210-05211_KITT-235_cleaned.diff) is the patch file for #05210 through #05211.
-* [`patches/02198_KITT-383_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/02198_KITT-383_cleaned.diff) is the patch file for #02198.
-* [`patches/13106_KITT-1623_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/13106_KITT-1623_cleaned.diff) is the patch file for #13106.
-* [`patches/08231_KITT-845_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/08231_KITT-845_cleaned.diff) is the patch file for #08231.
-* [`patches/08394_KITT-845_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/08394_KITT-845_cleaned.diff) is the patch file for #08394.
-* [`patches/09616-09618_KITT-1025_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/09616-09618_KITT-1025_cleaned.diff) is the patch file for #09616 through #09618.
-* [`patches/09201_KITT-909_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/09201_KITT-909_cleaned.diff) is the patch file for #09201.
+* [`patches/01108-01109_KITT-235_cleaned.diff`](patches/01108-01109_KITT-235_cleaned.diff) is the patch file for #01108 through #01109.
+* [`patches/01638-01640_KITT-235_cleaned.diff`](patches/01638-01640_KITT-235_cleaned.diff) is the patch file for #01638 through #01640.
+* [`patches/02239-02244_KITT-235_cleaned.diff`](patches/02239-02244_KITT-235_cleaned.diff) is the patch file for #02239 through #02244.
+* [`patches/02640_KITT-235_cleaned.diff`](patches/02640_KITT-235_cleaned.diff) is the patch file for #02640.
+* [`patches/03149-03150_KITT-235_cleaned.diff`](patches/03149-03150_KITT-235_cleaned.diff) is the patch file for #03149 through #03150.
+* [`patches/03152-03154_KITT-235_cleaned.diff`](patches/03152-03154_KITT-235_cleaned.diff) is the patch file for #03152 through #03154.
+* [`patches/03804-03805_KITT-235_cleaned.diff`](patches/03804-03805_KITT-235_cleaned.diff) is the patch file for #03804 through #03805.
+* [`patches/03938_KITT-235_cleaned.diff`](patches/03938_KITT-235_cleaned.diff) is the patch file for #03938.
+* [`patches/04010_KITT-235_cleaned.diff`](patches/04010_KITT-235_cleaned.diff) is the patch file for #04010.
+* [`patches/04560_KITT-235_cleaned.diff`](patches/04560_KITT-235_cleaned.diff) is the patch file for #04560.
+* [`patches/05210-05211_KITT-235_cleaned.diff`](patches/05210-05211_KITT-235_cleaned.diff) is the patch file for #05210 through #05211.
+* [`patches/02198_KITT-383_cleaned.diff`](patches/02198_KITT-383_cleaned.diff) is the patch file for #02198.
+* [`patches/13106_KITT-1623_cleaned.diff`](patches/13106_KITT-1623_cleaned.diff) is the patch file for #13106.
+* [`patches/08231_KITT-845_cleaned.diff`](patches/08231_KITT-845_cleaned.diff) is the patch file for #08231.
+* [`patches/08394_KITT-845_cleaned.diff`](patches/08394_KITT-845_cleaned.diff) is the patch file for #08394.
+* [`patches/09616-09618_KITT-1025_cleaned.diff`](patches/09616-09618_KITT-1025_cleaned.diff) is the patch file for #09616 through #09618.
+* [`patches/09201_KITT-909_cleaned.diff`](patches/09201_KITT-909_cleaned.diff) is the patch file for #09201.
 
 <h2>Revisions</h2>
 
@@ -104,7 +104,7 @@ file for every revision listed below for the following reasons:
   changesets are not provided as patches. They are instead presented as intact files under the
   `liquibase-changesets/` directory.
 
-[Here](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patch_log.txt) is a printout of `svn log -v` for each revision.
+[Here](patch_log.txt) is a printout of `svn log -v` for each revision.
 
 *   \#1108 was committed against KITT-235 on 2009-03-27 21:30:50 UTC by <strong>hlo</strong>.
 
