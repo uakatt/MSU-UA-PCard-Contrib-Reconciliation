@@ -1,0 +1,18 @@
+Index: financial-system/kfs/trunk/work/src/edu/arizona/kfs/sys/KFSKeyConstants.java
+===================================================================
+--- financial-system/kfs/trunk/work/src/edu/arizona/kfs/sys/KFSKeyConstants.java	(revision 4009)
++++ financial-system/kfs/trunk/work/src/edu/arizona/kfs/sys/KFSKeyConstants.java	(revision 4010)
+@@ -23,13 +23,6 @@
+     public static final String WORKFLOW_DIRECTORY = "data.xml.root.location";
+     public static final String INGESTION_DIRECTORY = "ingestion";
+     
+-    static final public String USETAX_TRANSACTIONS_OUTPUT_FILE = "gl_usetaxtrans";
+-    static final public String USETAX_POSTER_INPUT_FILE = "gl_sortusetax";
+-                  
+-    static final public String USETAX_POSTER_ERROR_OUTPUT_FILE = "gl_usetaxerrs";
+-    
+-    // Procurement Cardholder errors
+-    public static final String ERROR_PCH_INVALID_GROUPNAME = "error.document.pch.invalidGroupName";
+     //Account Assession Code Errors
+     public static final String ERROR_ACCOUNT_EXTENDED_ATTR_INVALID_DATA = "error.common.validation.alphanumeric";//KITT-200
+ 

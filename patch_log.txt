@@ -1,4 +1,187 @@
 ------------------------------------------------------------------------
+r1108 | hlo | 2009-03-27 14:30:50 -0700 (Fri, 27 Mar 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java
+
+KITT-235 Added method to access new system parameter.
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r1109 | hlo | 2009-03-27 14:36:15 -0700 (Fri, 27 Mar 2009) | 1 line
+Changed paths:
+   A /financial-system/kfs/trunk/work/db/scripts/arizona/data.sql
+
+KITT-235 SQL for new parameter.
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r1638 | hlo | 2009-05-01 17:25:33 -0700 (Fri, 01 May 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/src/edu/arizona/kfs/sys/AZKFSConstants.java
+
+KITT-235 Modified to reflect correct Jira ticket number.
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r1639 | hlo | 2009-05-01 17:27:08 -0700 (Fri, 01 May 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java
+
+KITT-235 Includes method for new system parameter.
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r1640 | hlo | 2009-05-01 17:28:26 -0700 (Fri, 01 May 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag
+
+KITT-235 Includes code to check for new system parameter before displaying.
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r2198 | jwingate | 2009-05-27 17:43:49 -0700 (Wed, 27 May 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardHolderDetail.xml
+
+KITT-383, KITT-384
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r2239 | jwingate | 2009-05-29 17:34:25 -0700 (Fri, 29 May 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/spring-fp.xml
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r2240 | jwingate | 2009-05-29 17:34:52 -0700 (Fri, 29 May 2009) | 1 line
+Changed paths:
+   A /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/batch
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r2241 | jwingate | 2009-05-29 17:35:11 -0700 (Fri, 29 May 2009) | 1 line
+Changed paths:
+   A /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/batch/service
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r2242 | jwingate | 2009-05-29 17:35:32 -0700 (Fri, 29 May 2009) | 1 line
+Changed paths:
+   A /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/batch/service/impl
+   A /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r2243 | jwingate | 2009-05-29 17:36:31 -0700 (Fri, 29 May 2009) | 1 line
+Changed paths:
+   A /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardHolder.java
+   A /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardHolder.xml
+   A /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/document/ProcurementCardDocument.java
+   A /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/document/datadictionary/ProcurementCardDocument.xml
+   A /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/document/workflow/ProcurementCardDocument.xml
+   A /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/identity
+   A /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/identity/ProcurementCardHolderDerivedRoleTypeServiceImpl.java
+   A /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/identity/ProcurementCardReconcilerDerivedRoleTypeServiceImpl.java
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r2244 | jwingate | 2009-05-29 17:55:17 -0700 (Fri, 29 May 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/db/scripts/arizona/data.sql
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r2640 | jwingate | 2009-06-10 17:54:03 -0700 (Wed, 10 Jun 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r3149 | jwingate | 2009-06-22 16:58:23 -0700 (Mon, 22 Jun 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/src/com/rsmart/kuali/kfs/fp/businessobject/datadictionary/ProcurementCardHolder.xml
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r3150 | jwingate | 2009-06-22 16:59:17 -0700 (Mon, 22 Jun 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/spring-fp.xml
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r3152 | jwingate | 2009-06-22 17:05:46 -0700 (Mon, 22 Jun 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r3153 | jwingate | 2009-06-22 17:47:27 -0700 (Mon, 22 Jun 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/db/scripts/arizona/data.sql
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r3154 | jwingate | 2009-06-22 17:57:27 -0700 (Mon, 22 Jun 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r3804 | jwingate | 2009-07-06 18:01:49 -0700 (Mon, 06 Jul 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/db/scripts/arizona/data.sql
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r3805 | jwingate | 2009-07-06 18:02:48 -0700 (Mon, 06 Jul 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/db/scripts/arizona/schema-oracle.sql
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r3938 | jwingate | 2009-07-17 17:37:24 -0700 (Fri, 17 Jul 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/src/edu/arizona/kfs/gl/GlConstants.java
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r4010 | jwingate | 2009-07-20 10:49:07 -0700 (Mon, 20 Jul 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/src/edu/arizona/kfs/sys/KFSKeyConstants.java
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r4560 | jwingate | 2009-08-25 14:38:32 -0700 (Tue, 25 Aug 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/db/scripts/arizona/data.sql
+
+KITT-235 PCard Administration and Reconciliation
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r5210 | hlo | 2009-09-30 15:02:28 -0700 (Wed, 30 Sep 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag
+
+KITT-235 Re-adding modifications.
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r5211 | hlo | 2009-09-30 15:07:59 -0700 (Wed, 30 Sep 2009) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java
+
+KITT-235 Re-adding modifications.
+------------------------------------------------------------------------
+------------------------------------------------------------------------
 r8231 | hlo | 2010-03-03 18:48:57 -0800 (Wed, 03 Mar 2010) | 1 line
 Changed paths:
    M /financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardTransactionDetail.java
@@ -75,4 +258,11 @@ Changed paths:
    M /financial-system/kfs/trunk/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag
 
 KITT-1025 Merging code; added canEdit variable.
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+r13106 | jwingate | 2010-09-09 14:59:29 -0700 (Thu, 09 Sep 2010) | 1 line
+Changed paths:
+   M /financial-system/kfs/trunk/work/src/com/rsmart/kuali/kfs/fp/document/ProcurementCardDocument.java
+
+KITT-1623 / KFSI-2376 PCDOs Routing to Exception
 ------------------------------------------------------------------------

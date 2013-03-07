@@ -1,0 +1,14 @@
+Index: financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardHolderDetail.xml
+===================================================================
+--- financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardHolderDetail.xml	(revision 2197)
++++ financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardHolderDetail.xml	(revision 2198)
+@@ -77,7 +77,8 @@
+     <property name="shortLabel" value="Number" />
+     <property name="maxLength" value="16" />
+     <property name="validationPattern" >
+-      <bean parent="AlphaNumericValidationPattern" />
++    <bean parent="NumericValidationPattern"
++            p:exactLength="16" />     
+     </property>
+     <property name="control" >
+       <bean parent="TextControlDefinition"

@@ -1,0 +1,28 @@
+Index: work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java
+===================================================================
+--- work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java	(revision 1638)
++++ work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java	(revision 1639)
+@@ -45,6 +45,8 @@
+ import org.kuali.rice.kns.util.GlobalVariables;
+ import org.kuali.rice.kns.util.TypedArrayList;
+ 
++import edu.arizona.kfs.sys.AZKFSConstants;
++
+ /**
+  * This class is the form class for the ProcurementCard document. This method extends the parent KualiTransactionalDocumentFormBase
+  * class which contains all of the common form methods and form attributes needed by the Procurment Card document.
+@@ -198,4 +200,14 @@
+         // we'll just cheat...
+         return "targetAccountingLines";
+     }
++
++    /**
++     * Customization for UA Sales Tax Amount and Tax Exempt Indicator.
++     * This method returns the value of the ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND system parameter.
++     * @return
++     */
++    public boolean getEnableSalesTaxIndicator() {        
++        return SpringContext.getBean(ParameterService.class).getIndicatorParameter(ProcurementCardDocument.class, AZKFSConstants.ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND);
++    }
+ }
++

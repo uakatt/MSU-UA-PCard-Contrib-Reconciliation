@@ -1,0 +1,137 @@
+Index: work/db/scripts/arizona/data.sql
+===================================================================
+--- work/db/scripts/arizona/data.sql	(revision 3151)
++++ work/db/scripts/arizona/data.sql	(revision 3154)
+@@ -13,3 +13,14 @@
+ INSERT INTO KRNS_PARM_T (NMSPC_CD, PARM_DTL_TYP_CD, PARM_NM, OBJ_ID, VER_NBR, TXT, PARM_DESC_TXT, PARM_TYP_CD, CONS_CD)
+ VALUES ('KFS-FP', 'GeneralErrorCorrection', 'REFERENCE_NUMBER_VALIDATION_IND', SYS_GUID(), 1, 'Y', 'Indicator to turn the reference number validation on/off on the General Error Correction.', 'CONFG', 'A');
+ 
++--creates permissions for editing of target accounting lines by PCard reconciler
++INSERT INTO KRIM_PERM_T (PERM_ID,OBJ_ID,VER_NBR,PERM_TMPL_ID,NM,DESC_TXT,ACTV_IND,NMSPC_CD) VALUES ('1032','5D280C0EE323FEAEE0404F8132D823B5',1,'41','Modify Accounting Lines',null,'Y','KFS-FP');
++
++--associates permission with document, route node and property  - perm_id must match perm_id above
++INSERT INTO KRIM_PERM_ATTR_DATA_T (ATTR_DATA_ID,OBJ_ID,VER_NBR,PERM_ID,KIM_TYP_ID,KIM_ATTR_DEFN_ID,ATTR_VAL) VALUES ('1039','5D280C0EE326FEAEE0404F8139D823B5',1,'1032','52','13','PCDO');
++INSERT INTO KRIM_PERM_ATTR_DATA_T (ATTR_DATA_ID,OBJ_ID,VER_NBR,PERM_ID,KIM_TYP_ID,KIM_ATTR_DEFN_ID,ATTR_VAL) VALUES ('1040','5D280C0EE327FEAEE0404F8140D823B5',1,'1032','52','16','ProcurementCardReconciler');
++INSERT INTO KRIM_PERM_ATTR_DATA_T (ATTR_DATA_ID,OBJ_ID,VER_NBR,PERM_ID,KIM_TYP_ID,KIM_ATTR_DEFN_ID,ATTR_VAL) VALUES ('1041','5D280C0EE328FEAEE0404F8141D823B5',1,'1032','52','6','targetAccountingLines');
++
++--associates permission with role - role_id and perm_id must match role_id and perm_id above
++INSERT INTO KRIM_ROLE_PERM_T (ROLE_PERM_ID,OBJ_ID,VER_NBR,ROLE_ID,PERM_ID,ACTV_IND) VALUES ('1032','5D280C0EE329FEAEE0404F8132D823B5',1,'99','1032','Y');
++
+Index: work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java
+===================================================================
+--- work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java	(revision 3151)
++++ work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java	(revision 3154)
+@@ -85,9 +85,12 @@
+ 
+     //hold the default values from the custom Procurement Cardholder table
+     private String cardholderName;
+-    private String defaultChartCode;
+-    private String defaultAccountNumber;
+-    private String defaultObjectCode;
++    private String cardholderChartCode;
++    private String cardholderAccountNumber;
++    private String cardholderSubAccountNumber;
++    private String cardholderObjectCode;
++    private String cardholderSubObjectCode;
++
+     
+     private ParameterService parameterService;
+     private BusinessObjectService businessObjectService;
+@@ -526,11 +529,11 @@
+ 
+         targetLine.setDocumentNumber(docTransactionDetail.getDocumentNumber());
+         targetLine.setFinancialDocumentTransactionLineNumber(docTransactionDetail.getFinancialDocumentTransactionLineNumber());
+-        targetLine.setChartOfAccountsCode(transaction.getChartOfAccountsCode());
+-        targetLine.setAccountNumber(transaction.getAccountNumber());
+-        targetLine.setFinancialObjectCode(transaction.getFinancialObjectCode());
+-        targetLine.setSubAccountNumber(transaction.getSubAccountNumber());
+-        targetLine.setFinancialSubObjectCode(transaction.getFinancialSubObjectCode());
++        targetLine.setChartOfAccountsCode((StringUtils.isNotEmpty(cardholderChartCode)) ? cardholderChartCode : getErrorChartCode());
++        targetLine.setAccountNumber((StringUtils.isNotEmpty(cardholderAccountNumber)) ? cardholderAccountNumber : getErrorAccountNumber());
++        targetLine.setFinancialObjectCode((StringUtils.isNotEmpty(cardholderObjectCode)) ? cardholderObjectCode : getDefaultObjectCode());
++        targetLine.setSubAccountNumber(cardholderSubAccountNumber);
++        targetLine.setFinancialSubObjectCode(cardholderSubObjectCode);
+         targetLine.setProjectCode(transaction.getProjectCode());
+ 
+         if (GL_CREDIT_CODE.equals(transaction.getTransactionDebitCreditCode())) {
+@@ -670,9 +673,11 @@
+         
+         if (ObjectUtils.isNotNull(procurementCardHolderDetail)) {
+             cardholderName = procurementCardHolderDetail.getCardHolderName();
+-            defaultChartCode = procurementCardHolderDetail.getChartOfAccountsCode();
+-            defaultAccountNumber = procurementCardHolderDetail.getAccountNumber();
+-            defaultObjectCode = procurementCardHolderDetail.getFinancialObjectCode();
++            cardholderChartCode = procurementCardHolderDetail.getChartOfAccountsCode();
++            cardholderAccountNumber = procurementCardHolderDetail.getAccountNumber();
++            cardholderSubAccountNumber = procurementCardHolderDetail.getSubAccountNumber();
++            cardholderObjectCode = procurementCardHolderDetail.getFinancialObjectCode();
++            cardholderSubObjectCode = procurementCardHolderDetail.getFinancialSubObjectCode();
+         }  
+         
+     }
+@@ -682,11 +687,7 @@
+      * @return The default chart code defined in the parameter table.
+      */
+     private String getDefaultChartCode() {
+-        if (StringUtils.isNotEmpty(defaultChartCode)) {
+-            return defaultChartCode;
+-        } else {
+-            return parameterService.getParameterValue(ProcurementCardLoadStep.class, DEFAULT_TRANS_CHART_CODE_PARM_NM);
+-        }
++        return parameterService.getParameterValue(ProcurementCardLoadStep.class, DEFAULT_TRANS_CHART_CODE_PARM_NM);        
+     }
+ 
+     /**
+@@ -694,11 +695,7 @@
+      * @return The default account number defined in the parameter table.
+      */
+     private String getDefaultAccountNumber() {
+-        if (StringUtils.isNotEmpty(defaultAccountNumber)) {
+-            return defaultAccountNumber;
+-        } else {
+-            return parameterService.getParameterValue(ProcurementCardLoadStep.class, DEFAULT_TRANS_ACCOUNT_PARM_NM);
+-        }
++        return parameterService.getParameterValue(ProcurementCardLoadStep.class, DEFAULT_TRANS_ACCOUNT_PARM_NM);        
+     }
+ 
+     /**
+@@ -706,11 +703,7 @@
+      * @return The default object code defined in the parameter table.
+      */
+     private String getDefaultObjectCode() {
+-        if (StringUtils.isNotEmpty(defaultObjectCode)) {
+-            return defaultObjectCode;
+-        } else {
+-            return parameterService.getParameterValue(ProcurementCardLoadStep.class, DEFAULT_TRANS_OBJECT_CODE_PARM_NM);
+-        }
++        return parameterService.getParameterValue(ProcurementCardLoadStep.class, DEFAULT_TRANS_OBJECT_CODE_PARM_NM);        
+     }
+ 
+     /**
+Index: work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java
+===================================================================
+--- work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java	(revision 3151)
++++ work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java	(revision 3154)
+@@ -44,6 +44,8 @@
+ import org.kuali.rice.kns.util.GlobalVariables;
+ import org.kuali.rice.kns.util.TypedArrayList;
+ 
++import edu.arizona.kfs.sys.AZKFSConstants;
++
+ import com.rsmart.kuali.kfs.fp.document.ProcurementCardDocument;
+ 
+ /**
+@@ -199,4 +201,13 @@
+         // we'll just cheat...
+         return "targetAccountingLines";
+     }
++    
++    /**
++     * Customization for UA Sales Tax Amount and Tax Exempt Indicator.
++     * This method returns the value of the ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND system parameter.
++     * @return
++     */
++    public boolean getEnableSalesTaxIndicator() {        
++        return SpringContext.getBean(ParameterService.class).getIndicatorParameter(ProcurementCardDocument.class, AZKFSConstants.ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND);
++    }
+ }

@@ -1,0 +1,67 @@
+Index: work/src/com/rsmart/kuali/kfs/fp/document/ProcurementCardDocument.java
+===================================================================
+--- work/src/com/rsmart/kuali/kfs/fp/document/ProcurementCardDocument.java	(revision 13105)
++++ work/src/com/rsmart/kuali/kfs/fp/document/ProcurementCardDocument.java	(revision 13106)
+@@ -17,12 +17,12 @@
+ package com.rsmart.kuali.kfs.fp.document;
+ 
+ import java.sql.Date;
++import java.util.ArrayList;
+ import java.util.Calendar;
+ import java.util.List;
+ 
+ import org.kuali.kfs.fp.batch.ProcurementCardLoadStep;
+ import org.kuali.kfs.fp.businessobject.CapitalAssetInformation;
+-import org.kuali.kfs.fp.businessobject.ProcurementCardTransactionDetail;
+ import org.kuali.kfs.module.purap.PurapRuleConstants;
+ import org.kuali.kfs.sys.businessobject.GeneralLedgerPendingEntry;
+ import org.kuali.kfs.sys.businessobject.GeneralLedgerPendingEntrySourceDetail;
+@@ -30,12 +30,15 @@
+ import org.kuali.kfs.sys.businessobject.TargetAccountingLine;
+ import org.kuali.kfs.sys.context.SpringContext;
+ import org.kuali.kfs.sys.service.UniversityDateService;
++import org.kuali.rice.kim.service.GroupService;
+ import org.kuali.rice.kns.service.ParameterService;
+ import org.kuali.rice.kns.util.ObjectUtils;
+ import org.kuali.rice.kns.util.TypedArrayList;
+ 
+ import com.rsmart.kuali.kfs.fp.businessobject.ProcurementCardHolder;
+ 
++import edu.arizona.kfs.fp.businessobject.ProcurementCardTransactionDetail;
++
+ /**
+  * This is the Procurement Card Document Class. The procurement cards distributes expenses from clearing accounts. It is a two-sided
+  * document, but only target lines are displayed because source lines cannot be changed. Transaction, Card, and Vendor information
+@@ -216,14 +219,27 @@
+    
+     /**
+      * 
+-     * Determines whether this document has a Recurrence filled out enough to create an INVR doc.
++     * Determines whether this document has a Reconciler.
+      * @return
+      */
+     private boolean hasReconciler() {
+-        return (ObjectUtils.isNotNull(getProcurementCardHolder()) && 
+-                ObjectUtils.isNotNull(getProcurementCardHolder().getProcurementCardHolderDetail()) &&
+-                ObjectUtils.isNotNull(getProcurementCardHolder().getProcurementCardHolderDetail().getCardGroupId()) &&
+-                ObjectUtils.isNotNull(getProcurementCardHolder().getProcurementCardHolderDetail().getCardHolderSystemId()));
++        boolean retCode = true;
++        if (ObjectUtils.isNull(getProcurementCardHolder()) || 
++            ObjectUtils.isNull(getProcurementCardHolder().getProcurementCardHolderDetail()) ||
++            ObjectUtils.isNull(getProcurementCardHolder().getProcurementCardHolderDetail().getCardGroupId()) ||
++            ObjectUtils.isNull(getProcurementCardHolder().getProcurementCardHolderDetail().getCardHolderSystemId())) {
++            retCode = false;
++        }
++        else {
++            List<String> groupMembers = new ArrayList<String>();
++            groupMembers = SpringContext.getBean(GroupService.class).getMemberPrincipalIds(getProcurementCardHolder().getProcurementCardHolderDetail().getCardGroupId());
++            if (groupMembers.isEmpty() ||
++                (groupMembers.size() == 1 &&
++                 groupMembers.get(0).equals(getProcurementCardHolder().getProcurementCardHolderDetail().getCardHolderSystemId()))) {
++                retCode = false;
++            }
++        }
++        return retCode;
+     }
+ 
+ 

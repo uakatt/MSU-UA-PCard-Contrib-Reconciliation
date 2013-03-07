@@ -1,0 +1,27 @@
+Index: financial-system/kfs/trunk/work/db/scripts/arizona/schema-oracle.sql
+===================================================================
+--- financial-system/kfs/trunk/work/db/scripts/arizona/schema-oracle.sql	(revision 3804)
++++ financial-system/kfs/trunk/work/db/scripts/arizona/schema-oracle.sql	(revision 3805)
+@@ -195,3 +195,22 @@
+ ADD CONSTRAINT FP_ERROR_CERT_T_TC0  
+ FOREIGN KEY (ERROR_CERT_ID)
+ REFERENCES FP_ERROR_CERT_T (ERROR_CERT_ID) ON DELETE CASCADE;
++
++CREATE TABLE GL_USETAX_TRN_T
++(
++   UNIV_FISCAL_YR varchar2(4) NOT NULL,
++   FIN_COA_CD varchar2(2) NOT NULL,
++   ACCOUNT_NBR varchar2(7) NOT NULL,
++   SUB_ACCT_NBR varchar2(5) NOT NULL,
++   FIN_OBJECT_CD varchar2(4) NOT NULL,
++   FIN_SUB_OBJ_CD varchar2(3) NOT NULL,
++   FIN_BALANCE_TYP_CD varchar2(2) NOT NULL,
++   FIN_OBJ_TYP_CD varchar2(2) NOT NULL,
++   UNIV_FISCAL_PRD_CD varchar2(2) NOT NULL,
++   PROJECT_CD varchar2(10) NOT NULL,
++   ORG_REFERENCE_ID varchar2(8) NOT NULL,
++   TRN_LDGR_ENTR_AMT decimal(19,2),
++   TRN_DEBIT_CRDT_CD varchar2(1),
++   CONSTRAINT GL_USETAX_TRN_TP1 PRIMARY KEY (UNIV_FISCAL_YR,FIN_COA_CD,ACCOUNT_NBR,SUB_ACCT_NBR,FIN_OBJECT_CD,FIN_SUB_OBJ_CD,FIN_BALANCE_TYP_CD,FIN_OBJ_TYP_CD,UNIV_FISCAL_PRD_CD,PROJECT_CD,ORG_REFERENCE_ID)
++)
++;

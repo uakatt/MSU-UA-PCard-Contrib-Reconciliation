@@ -1,0 +1,13 @@
+Index: financial-system/kfs/trunk/work/src/edu/arizona/kfs/sys/AZKFSConstants.java
+===================================================================
+--- financial-system/kfs/trunk/work/src/edu/arizona/kfs/sys/AZKFSConstants.java	(revision 1637)
++++ financial-system/kfs/trunk/work/src/edu/arizona/kfs/sys/AZKFSConstants.java	(revision 1638)
+@@ -22,7 +22,7 @@
+  * This class is used to define our global constants.
+  */
+ public class AZKFSConstants extends JSTLConstants implements ParameterKeyConstants {
+-    public static final String ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND = "ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND";  // for KITT-250
++    public static final String ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND = "ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND";  // for KITT-235
+     public static final String GL_USETAX_DOCUMENT_TYPE = "USE_TAX_DOCUMENT_TYPE";
+     public static final String GL_USETAX_TAX_REGION = "USE_TAX_TAX_REGION_CODE";
+ }

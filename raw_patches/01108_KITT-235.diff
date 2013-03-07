@@ -1,0 +1,18 @@
+Index: financial-system/kfs/trunk/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java
+===================================================================
+--- financial-system/kfs/trunk/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java	(revision 1107)
++++ financial-system/kfs/trunk/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java	(revision 1108)
+@@ -130,4 +130,13 @@
+     public void setCapitalAssetInformation(CapitalAssetInformation capitalAssetInformation) {
+         this.capitalAssetInformation = capitalAssetInformation;        
+     }
++    
++    /**
++     * Customization for UA Sales Tax Amount and Tax Exempt Indicator.
++     * This method returns the value of the ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND system parameter.
++     * @return
++     */
++    public boolean getEnableSalesTaxIndicator() {
++        return SpringContext.getBean(ParameterService.class).getIndicatorParameter(ProcurementCardDocument.class, "ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND");
++    }
+ }

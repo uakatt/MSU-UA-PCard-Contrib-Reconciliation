@@ -1,0 +1,15 @@
+Index: financial-system/kfs/trunk/work/src/edu/arizona/kfs/gl/GlConstants.java
+===================================================================
+--- financial-system/kfs/trunk/work/src/edu/arizona/kfs/gl/GlConstants.java	(revision 3937)
++++ financial-system/kfs/trunk/work/src/edu/arizona/kfs/gl/GlConstants.java	(revision 3938)
+@@ -28,5 +28,9 @@
+     public static final String FRINGE_SWEEP_BATCH = "Fringe Sweep Batch - ";
+     public static final String FRINGE_SWEEP_DOCUMENT_DESCRIPTION = "Fringe Sweep Entry";
+     public static final String NO_BALANCES_FOR_FRINGE_SWEEP_FOUND = "error.batch.ereSweep.balancesNotFound";
++       
++    //Batch File System
++    public static final String USETAX_TRANSACTIONS_OUTPUT_FILE = "gl_usetaxtrans";
++    public static final String USETAX_POSTER_ERROR_OUTPUT_FILE = "gl_usetaxerrs";    
+     
+ }
+\ No newline at end of file

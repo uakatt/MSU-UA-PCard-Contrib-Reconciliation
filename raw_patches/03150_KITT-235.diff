@@ -1,0 +1,52 @@
+Index: financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/spring-fp.xml
+===================================================================
+--- financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/spring-fp.xml	(revision 3149)
++++ financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/spring-fp.xml	(revision 3150)
+@@ -29,23 +29,46 @@
+     	<property name="namespaceCode" value="KFS-FP" />
+         <property name="packagePrefixes">
+ 			<list merge="true">
+-			    <value>edu.arizona.kfs.fp</value>			   
++			    <value>edu.arizona.kfs.fp</value>
++			    <value>com.rsmart.kuali.kfs.fp</value>			   
+ 			</list>
+ 		</property>
+ 		<property name="dataDictionaryPackages">
+ 		    <list merge="true">
+ 		    	<value>edu/arizona/kfs/fp/businessobject/datadictionary</value>
+ 		    	<value>edu/arizona/kfs/fp/document/datadictionary</value>
++		    	<value>com/rsmart/kuali/kfs/fp/businessobject/datadictionary</value>
++                <value>com/rsmart/kuali/kfs/fp/document/datadictionary</value>
+             </list>
+ 		</property>
+ 		<property name="databaseRepositoryFilePaths">
+ 			<list merge="true">
+ 			   <value>edu/arizona/kfs/fp/ojb-fp.xml</value> 
++			   <value>com/rsmart/kuali/kfs/fp/ojb-fp.xml</value>
+ 			</list>
+ 		</property>
+ 	</bean>  
+ 	
+ 	<!-- validations -->
+ 	<import resource="document/validation/configuration/GeneralErrorCorrectionValidation.xml" />
++	
++	<bean id="procurementCardHolderDerivedRoleTypeService" class="com.rsmart.kuali.kfs.fp.identity.ProcurementCardHolderDerivedRoleTypeServiceImpl" />  
++	<bean class="org.kuali.rice.ksb.messaging.KSBExporter">
++    	<property name="serviceDefinition">
++      	<bean parent="kfsService"
++        	p:service-ref="procurementCardHolderDerivedRoleTypeService"
++        	p:localServiceName="procurementCardHolderDerivedRoleTypeService" />
++	    </property>
++	</bean>
++	
++	<bean id="procurementCardReconcilerDerivedRoleTypeService" class="com.rsmart.kuali.kfs.fp.identity.ProcurementCardReconcilerDerivedRoleTypeServiceImpl" />  
++	<bean class="org.kuali.rice.ksb.messaging.KSBExporter">
++    	<property name="serviceDefinition">
++      	<bean parent="kfsService"
++        	p:service-ref="procurementCardReconcilerDerivedRoleTypeService"
++        	p:localServiceName="procurementCardReconcilerDerivedRoleTypeService" />
++	    </property>
++	</bean>	
++
+ </beans>
+ 

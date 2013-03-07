@@ -1,0 +1,94 @@
+Index: work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java
+===================================================================
+--- work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java	(revision 2639)
++++ work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java	(revision 2640)
+@@ -85,9 +85,11 @@
+ 
+     //hold the default values from the custom Procurement Cardholder table
+     private String cardholderName;
+-    private String defaultChartCode;
+-    private String defaultAccountNumber;
+-    private String defaultObjectCode;
++    private String cardholderChartCode;
++    private String cardholderAccountNumber;
++    private String cardholderSubAccountNumber;
++    private String cardholderObjectCode;
++    private String cardholderSubObjectCode;
+     
+     private ParameterService parameterService;
+     private BusinessObjectService businessObjectService;
+@@ -526,11 +528,12 @@
+ 
+         targetLine.setDocumentNumber(docTransactionDetail.getDocumentNumber());
+         targetLine.setFinancialDocumentTransactionLineNumber(docTransactionDetail.getFinancialDocumentTransactionLineNumber());
+-        targetLine.setChartOfAccountsCode(transaction.getChartOfAccountsCode());
+-        targetLine.setAccountNumber(transaction.getAccountNumber());
+-        targetLine.setFinancialObjectCode(transaction.getFinancialObjectCode());
+-        targetLine.setSubAccountNumber(transaction.getSubAccountNumber());
+-        targetLine.setFinancialSubObjectCode(transaction.getFinancialSubObjectCode());
++        
++        targetLine.setChartOfAccountsCode((StringUtils.isNotEmpty(cardholderChartCode)) ? cardholderChartCode : getErrorChartCode());
++        targetLine.setAccountNumber((StringUtils.isNotEmpty(cardholderAccountNumber)) ? cardholderAccountNumber : getErrorAccountNumber());
++        targetLine.setFinancialObjectCode((StringUtils.isNotEmpty(cardholderObjectCode)) ? cardholderObjectCode : getDefaultObjectCode());
++        targetLine.setSubAccountNumber(cardholderSubAccountNumber);
++        targetLine.setFinancialSubObjectCode(cardholderSubObjectCode);
+         targetLine.setProjectCode(transaction.getProjectCode());
+ 
+         if (GL_CREDIT_CODE.equals(transaction.getTransactionDebitCreditCode())) {
+@@ -670,23 +673,21 @@
+         
+         if (ObjectUtils.isNotNull(procurementCardHolderDetail)) {
+             cardholderName = procurementCardHolderDetail.getCardHolderName();
+-            defaultChartCode = procurementCardHolderDetail.getChartOfAccountsCode();
+-            defaultAccountNumber = procurementCardHolderDetail.getAccountNumber();
+-            defaultObjectCode = procurementCardHolderDetail.getFinancialObjectCode();
++            cardholderChartCode = procurementCardHolderDetail.getChartOfAccountsCode();
++            cardholderAccountNumber = procurementCardHolderDetail.getAccountNumber();
++            cardholderSubAccountNumber = procurementCardHolderDetail.getSubAccountNumber();
++            cardholderObjectCode = procurementCardHolderDetail.getFinancialObjectCode();
++            cardholderSubObjectCode = procurementCardHolderDetail.getFinancialSubObjectCode();
+         }  
+         
+     }
+ 
+     /**
+-     * Retrieves the default chard code from the parameter table.
++     * Retrieves the default chart code from the parameter table.
+      * @return The default chart code defined in the parameter table.
+      */
+     private String getDefaultChartCode() {
+-        if (StringUtils.isNotEmpty(defaultChartCode)) {
+-            return defaultChartCode;
+-        } else {
+-            return parameterService.getParameterValue(ProcurementCardLoadStep.class, DEFAULT_TRANS_CHART_CODE_PARM_NM);
+-        }
++        return parameterService.getParameterValue(ProcurementCardLoadStep.class, DEFAULT_TRANS_CHART_CODE_PARM_NM);        
+     }
+ 
+     /**
+@@ -694,11 +695,7 @@
+      * @return The default account number defined in the parameter table.
+      */
+     private String getDefaultAccountNumber() {
+-        if (StringUtils.isNotEmpty(defaultAccountNumber)) {
+-            return defaultAccountNumber;
+-        } else {
+-            return parameterService.getParameterValue(ProcurementCardLoadStep.class, DEFAULT_TRANS_ACCOUNT_PARM_NM);
+-        }
++        return parameterService.getParameterValue(ProcurementCardLoadStep.class, DEFAULT_TRANS_ACCOUNT_PARM_NM);        
+     }
+ 
+     /**
+@@ -706,11 +703,7 @@
+      * @return The default object code defined in the parameter table.
+      */
+     private String getDefaultObjectCode() {
+-        if (StringUtils.isNotEmpty(defaultObjectCode)) {
+-            return defaultObjectCode;
+-        } else {
+-            return parameterService.getParameterValue(ProcurementCardLoadStep.class, DEFAULT_TRANS_OBJECT_CODE_PARM_NM);
+-        }
++        return parameterService.getParameterValue(ProcurementCardLoadStep.class, DEFAULT_TRANS_OBJECT_CODE_PARM_NM);        
+     }
+ 
+     /**

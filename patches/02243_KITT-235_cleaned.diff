@@ -1,0 +1,1564 @@
+Index: work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardHolder.xml
+===================================================================
+--- work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardHolder.xml	(revision 0)
++++ work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardHolder.xml	(revision 2243)
+@@ -0,0 +1,330 @@
++<beans xmlns="http://www.springframework.org/schema/beans"
++    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++    xmlns:p="http://www.springframework.org/schema/p"
++    xmlns:dd="http://rice.kuali.org/dd"
++    xsi:schemaLocation="
++http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
++http://rice.kuali.org/dd http://rice.kuali.org/dd/dd.xsd">
++
++  <bean id="ProcurementCardHolder" parent="ProcurementCardHolder-parentBean" />
++
++  <bean id="ProcurementCardHolder-parentBean" abstract="true" parent="BusinessObjectEntry">
++    <property name="businessObjectClass" value="edu.arizona.kfs.fp.businessobject.ProcurementCardHolder" />
++    <property name="inquiryDefinition" >
++      <ref bean="ProcurementCardHolder-inquiryDefinition" />
++    </property>
++    <property name="objectLabel" value="Procurement Card Holder" />
++    <property name="attributes" >
++      <list>
++        <ref bean="ProcurementCardHolder-accountNumber" />
++        <ref bean="ProcurementCardHolder-cardCycleAmountLimit" />
++        <ref bean="ProcurementCardHolder-cardCycleVolumeLimit" />
++        <ref bean="ProcurementCardHolder-cardHolderAlternateName" />
++        <ref bean="ProcurementCardHolder-cardHolderCityName" />
++        <ref bean="ProcurementCardHolder-cardHolderLine1Address" />
++        <ref bean="ProcurementCardHolder-cardHolderLine2Address" />
++        <ref bean="ProcurementCardHolder-cardHolderName" />
++        <ref bean="ProcurementCardHolder-cardHolderStateCode" />
++        <ref bean="ProcurementCardHolder-cardHolderWorkPhoneNumber" />
++        <ref bean="ProcurementCardHolder-cardHolderZipCode" />
++        <ref bean="ProcurementCardHolder-cardLimit" />
++        <ref bean="ProcurementCardHolder-cardNoteText" />
++        <ref bean="ProcurementCardHolder-cardStatusCode" />
++        <ref bean="ProcurementCardHolder-chartOfAccountsCode" />
++        <ref bean="ProcurementCardHolder-documentNumber" />
++        <ref bean="ProcurementCardHolder-subAccountNumber" />
++        <ref bean="ProcurementCardHolder-transactionCreditCardNumber" />
++      </list>
++    </property>
++    <property name="relationships" >
++      <list>       
++        <dd:relationship objectAttribute="procurementCardHolderDetail">
++            <dd:primitiveAttribute source="transactionCreditCardNumber" target="creditCardNumber" />  
++            <dd:supportAttribute source="procurementCardHolderDetail.cardHolderSystemId" target="cardHolderSystemId" /> 
++            <dd:supportAttribute source="procurementCardHolderDetail.cardGroupId" target="cardGroupId" />                              
++        </dd:relationship>            
++      </list>
++    </property>
++  </bean>
++
++<!-- Attribute Definitions -->
++
++
++  <bean id="ProcurementCardHolder-accountNumber" parent="ProcurementCardHolder-accountNumber-parentBean" />
++
++  <bean id="ProcurementCardHolder-accountNumber-parentBean" abstract="true" parent="Account-accountNumber">
++    <property name="label" value="Default Account" />
++    <property name="shortLabel" value="Dflt Acct" />
++  </bean>
++  <bean id="ProcurementCardHolder-cardCycleAmountLimit" parent="ProcurementCardHolder-cardCycleAmountLimit-parentBean" />
++
++  <bean id="ProcurementCardHolder-cardCycleAmountLimit-parentBean" abstract="true" parent="AttributeDefinition">
++    <property name="name" value="cardCycleAmountLimit" />
++    <property name="forceUppercase" value="true" />
++    <property name="label" value="Card Cycle Amount Limit" />
++    <property name="shortLabel" value="Limit" />
++    <property name="maxLength" value="19" />
++    <property name="validationPattern" >
++      <bean parent="FloatingPointValidationPattern" />
++    </property>
++    <property name="control" >
++      <bean parent="TextControlDefinition"
++            p:size="21" />
++    </property>
++  </bean>
++  <bean id="ProcurementCardHolder-cardCycleVolumeLimit" parent="ProcurementCardHolder-cardCycleVolumeLimit-parentBean" />
++
++  <bean id="ProcurementCardHolder-cardCycleVolumeLimit-parentBean" abstract="true" parent="AttributeDefinition">
++    <property name="name" value="cardCycleVolumeLimit" />
++    <property name="forceUppercase" value="true" />
++    <property name="label" value="Card Cycle Volume Limit" />
++    <property name="shortLabel" value="Limit" />
++    <property name="maxLength" value="19" />
++    <property name="validationPattern" >
++      <bean parent="FloatingPointValidationPattern" />
++    </property>
++    <property name="control" >
++      <bean parent="TextControlDefinition"
++            p:size="21" />
++    </property>
++  </bean>
++  <bean id="ProcurementCardHolder-cardHolderAlternateName" parent="ProcurementCardHolder-cardHolderAlternateName-parentBean" />
++
++  <bean id="ProcurementCardHolder-cardHolderAlternateName-parentBean" abstract="true" parent="AttributeDefinition">
++    <property name="name" value="cardHolderAlternateName" />
++    <property name="forceUppercase" value="false" />
++    <property name="label" value="Card Holder Alternate Name" />
++    <property name="shortLabel" value="Name" />
++    <property name="maxLength" value="45" />
++    <property name="control" >
++      <bean parent="TextControlDefinition"
++            p:size="47" />
++    </property>
++  </bean>
++  <bean id="ProcurementCardHolder-cardHolderCityName" parent="ProcurementCardHolder-cardHolderCityName-parentBean" />
++
++  <bean id="ProcurementCardHolder-cardHolderCityName-parentBean" abstract="true" parent="AttributeDefinition">
++    <property name="name" value="cardHolderCityName" />
++    <property name="forceUppercase" value="false" />
++    <property name="label" value="Card Holder City Name" />
++    <property name="shortLabel" value="Name" />
++    <property name="maxLength" value="45" />
++    <property name="control" >
++      <bean parent="TextControlDefinition"
++            p:size="47" />
++    </property>
++  </bean>
++  <bean id="ProcurementCardHolder-cardHolderLine1Address" parent="ProcurementCardHolder-cardHolderLine1Address-parentBean" />
++
++  <bean id="ProcurementCardHolder-cardHolderLine1Address-parentBean" abstract="true" parent="AttributeDefinition">
++    <property name="name" value="cardHolderLine1Address" />
++    <property name="forceUppercase" value="false" />
++    <property name="label" value="Card Holder Line1 Address" />
++    <property name="shortLabel" value="Address" />
++    <property name="maxLength" value="45" />
++    <property name="control" >
++      <bean parent="TextControlDefinition"
++            p:size="47" />
++    </property>
++  </bean>
++  <bean id="ProcurementCardHolder-cardHolderLine2Address" parent="ProcurementCardHolder-cardHolderLine2Address-parentBean" />
++
++  <bean id="ProcurementCardHolder-cardHolderLine2Address-parentBean" abstract="true" parent="AttributeDefinition">
++    <property name="name" value="cardHolderLine2Address" />
++    <property name="forceUppercase" value="false" />
++    <property name="label" value="Card Holder Line2 Address" />
++    <property name="shortLabel" value="Address" />
++    <property name="maxLength" value="45" />
++    <property name="control" >
++      <bean parent="TextControlDefinition"
++            p:size="47" />
++    </property>
++  </bean>
++  <bean id="ProcurementCardHolder-cardHolderName" parent="ProcurementCardHolder-cardHolderName-parentBean" />
++
++  <bean id="ProcurementCardHolder-cardHolderName-parentBean" abstract="true" parent="AttributeDefinition">
++    <property name="name" value="cardHolderName" />
++    <property name="forceUppercase" value="false" />
++    <property name="label" value="Card Holder Name" />
++    <property name="shortLabel" value="Name" />
++    <property name="maxLength" value="35" />
++    <property name="control" >
++      <bean parent="TextControlDefinition"
++            p:size="37" />
++    </property>
++  </bean>
++  <bean id="ProcurementCardHolder-cardHolderStateCode" parent="ProcurementCardHolder-cardHolderStateCode-parentBean" />
++
++  <bean id="ProcurementCardHolder-cardHolderStateCode-parentBean" abstract="true" parent="ExternalizableAttributeDefinitionProxy"
++  	p:sourceExternalizableBusinessObjectInterface="org.kuali.rice.kns.bo.State"
++	p:sourceAttributeName="postalStateCode">
++    <property name="name" value="cardHolderStateCode" />
++    <property name="forceUppercase" value="false" />
++    <property name="label" value="Card Holder State Code" />
++    <property name="shortLabel" value="Code" />
++    <property name="maxLength" value="2" />
++    <property name="control" >
++      <bean parent="TextControlDefinition"
++            p:size="4" />
++    </property>
++  </bean>
++  <bean id="ProcurementCardHolder-cardHolderWorkPhoneNumber" parent="ProcurementCardHolder-cardHolderWorkPhoneNumber-parentBean" />
++
++  <bean id="ProcurementCardHolder-cardHolderWorkPhoneNumber-parentBean" abstract="true" parent="AttributeDefinition">
++    <property name="name" value="cardHolderWorkPhoneNumber" />
++    <property name="forceUppercase" value="false" />
++    <property name="label" value="Card Holder Work Phone Number" />
++    <property name="shortLabel" value="Number" />
++    <property name="maxLength" value="10" />
++    <property name="control" >
++      <bean parent="TextControlDefinition"
++            p:size="12" />
++    </property>
++  </bean>
++  <bean id="ProcurementCardHolder-cardHolderZipCode" parent="ProcurementCardHolder-cardHolderZipCode-parentBean" />
++
++  <bean id="ProcurementCardHolder-cardHolderZipCode-parentBean" abstract="true" parent="ExternalizableAttributeDefinitionProxy"
++  	p:sourceExternalizableBusinessObjectInterface="org.kuali.rice.kns.bo.PostalCode"
++	p:sourceAttributeName="postalCode">
++    <property name="name" value="cardHolderZipCode" />
++    <property name="label" value="Card Holder Postal (ZIP) Code" />
++    <property name="shortLabel" value="Code" />
++  </bean>
++  <bean id="ProcurementCardHolder-cardLimit" parent="ProcurementCardHolder-cardLimit-parentBean" />
++
++  <bean id="ProcurementCardHolder-cardLimit-parentBean" abstract="true" parent="AttributeDefinition">
++    <property name="name" value="cardLimit" />
++    <property name="forceUppercase" value="true" />
++    <property name="label" value="Card Limit" />
++    <property name="shortLabel" value="Limit" />
++    <property name="maxLength" value="19" />
++    <property name="validationPattern" >
++      <bean parent="FloatingPointValidationPattern" />
++    </property>
++    <property name="control" >
++      <bean parent="TextControlDefinition"
++            p:size="21" />
++    </property>
++  </bean>
++  <bean id="ProcurementCardHolder-cardNoteText" parent="ProcurementCardHolder-cardNoteText-parentBean" />
++
++  <bean id="ProcurementCardHolder-cardNoteText-parentBean" abstract="true" parent="AttributeDefinition">
++    <property name="name" value="cardNoteText" />
++    <property name="forceUppercase" value="false" />
++    <property name="label" value="Card Note Text" />
++    <property name="shortLabel" value="Text" />
++    <property name="maxLength" value="50" />
++    <property name="control" >
++      <bean parent="TextControlDefinition"
++            p:size="52" />
++    </property>
++  </bean>
++  <bean id="ProcurementCardHolder-cardStatusCode" parent="ProcurementCardHolder-cardStatusCode-parentBean" />
++
++  <bean id="ProcurementCardHolder-cardStatusCode-parentBean" abstract="true" parent="AttributeDefinition">
++    <property name="name" value="cardStatusCode" />
++    <property name="forceUppercase" value="false" />
++    <property name="label" value="Card Status Code" />
++    <property name="shortLabel" value="Code" />
++    <property name="maxLength" value="2" />
++    <property name="control" >
++      <bean parent="TextControlDefinition"
++            p:size="4" />
++    </property>
++  </bean>
++  <bean id="ProcurementCardHolder-chartOfAccountsCode" parent="ProcurementCardHolder-chartOfAccountsCode-parentBean" />
++
++  <bean id="ProcurementCardHolder-chartOfAccountsCode-parentBean" abstract="true" parent="Chart-chartOfAccountsCode">
++    <property name="label" value="Default Chart" />
++    <property name="shortLabel" value="Dflt Chrt" />
++  </bean>
++  <bean id="ProcurementCardHolder-documentNumber" parent="ProcurementCardHolder-documentNumber-parentBean" />
++
++  <bean id="ProcurementCardHolder-documentNumber-parentBean" abstract="true" parent="DocumentHeader-documentNumber">
++  	<property name="forceUppercase" value="true" />
++  </bean>
++  <bean id="ProcurementCardHolder-subAccountNumber" parent="ProcurementCardHolder-subAccountNumber-parentBean" />
++
++  <bean id="ProcurementCardHolder-subAccountNumber-parentBean" abstract="true" parent="SubAccount-subAccountNumber">
++    <property name="label" value="Default Sub-Account" />
++    <property name="shortLabel" value="Dflt Sub-Acct" />
++    <property name="required" value="false" />
++  </bean>
++  <bean id="ProcurementCardHolder-transactionCreditCardNumber" parent="ProcurementCardHolder-transactionCreditCardNumber-parentBean" />
++
++  <bean id="ProcurementCardHolder-transactionCreditCardNumber-parentBean" abstract="true" parent="AttributeDefinition">
++    <property name="name" value="transactionCreditCardNumber" />
++    <property name="forceUppercase" value="false" />
++    <property name="label" value="Transaction Credit Card Number" />
++    <property name="shortLabel" value="Number" />
++    <property name="maxLength" value="16" />
++    <property name="control" >
++      <bean parent="TextControlDefinition"
++            p:size="18" />
++    </property>
++    
++	<property name="attributeSecurity">
++       <bean parent="AttributeSecurity">
++  		  <property name="mask" value="true" /> 
++		  <property name="maskFormatter">
++             <bean parent="MaskFormatterLiteral" p:literal="*********" /> 
++  	      </property>
++       </bean>
++    </property>    
++  </bean>
++
++<!-- Business Object Inquiry Definition -->
++
++
++  <bean id="ProcurementCardHolder-inquiryDefinition" parent="ProcurementCardHolder-inquiryDefinition-parentBean" />
++
++  <bean id="ProcurementCardHolder-inquiryDefinition-parentBean" abstract="true" parent="InquiryDefinition">
++    <property name="title" value="Procurement Card Holder Inquiry" />
++    <property name="inquirySections" >
++      <list>
++        <bean parent="InquirySectionDefinition">
++          <property name="title" value="" />
++          <property name="numberOfColumns" value="1" />
++          <property name="inquiryFields" >
++            <list>
++              <bean parent="FieldDefinition"
++                    p:attributeName="documentNumber" />
++              <bean parent="FieldDefinition"
++                    p:attributeName="cardCycleAmountLimit" />
++              <bean parent="FieldDefinition"
++                    p:attributeName="cardCycleVolumeLimit" />
++              <bean parent="FieldDefinition"
++                    p:attributeName="cardHolderName" />
++              <bean parent="FieldDefinition"
++                    p:attributeName="cardHolderAlternateName" />
++              <bean parent="FieldDefinition"
++                    p:attributeName="cardHolderCityName" />
++              <bean parent="FieldDefinition"
++                    p:attributeName="cardHolderLine1Address" />
++              <bean parent="FieldDefinition"
++                    p:attributeName="cardHolderLine2Address" />
++              <bean parent="FieldDefinition"
++                    p:attributeName="cardHolderStateCode" />
++              <bean parent="FieldDefinition"
++                    p:attributeName="cardHolderWorkPhoneNumber" />
++              <bean parent="FieldDefinition"
++                    p:attributeName="cardHolderZipCode" />
++              <bean parent="FieldDefinition"
++                    p:attributeName="cardLimit" />
++              <bean parent="FieldDefinition"
++                    p:attributeName="cardNoteText" />
++              <bean parent="FieldDefinition"
++                    p:attributeName="cardStatusCode" />
++              <bean parent="FieldDefinition"
++                    p:attributeName="chartOfAccountsCode" />
++              <bean parent="FieldDefinition"
++                    p:attributeName="accountNumber" />
++              <bean parent="FieldDefinition"
++                    p:attributeName="subAccountNumber" />
++            </list>
++          </property>
++        </bean>
++      </list>
++    </property>
++  </bean>
++</beans>
+
+Property changes on: financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardHolder.xml
+___________________________________________________________________
+Added: svn:mime-type
+## -0,0 +1 ##
++text/plain
+\ No newline at end of property
+Index: work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardHolder.java
+===================================================================
+--- work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardHolder.java	(revision 0)
++++ work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardHolder.java	(revision 2243)
+@@ -0,0 +1,487 @@
++/*
++ * Copyright 2006-2007 The Kuali Foundation.
++ * 
++ * Licensed under the Educational Community License, Version 1.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ * 
++ * http://www.opensource.org/licenses/ecl1.php
++ * 
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package edu.arizona.kfs.fp.businessobject;
++
++import java.util.LinkedHashMap;
++
++import org.kuali.kfs.coa.businessobject.Account;
++import org.kuali.kfs.coa.businessobject.Chart;
++import org.kuali.kfs.coa.businessobject.SubAccount;
++import edu.arizona.kfs.fp.businessobject.ProcurementCardHolderDetail;
++import org.kuali.kfs.sys.KFSPropertyConstants;
++import org.kuali.rice.kns.bo.PersistableBusinessObjectBase;
++import org.kuali.rice.kns.util.KualiDecimal;
++
++/**
++ * This class is used to represent a procurement card holder, or the individual whose name is on the card.
++ */
++public class ProcurementCardHolder extends PersistableBusinessObjectBase {
++
++    private String documentNumber;
++    private String transactionCreditCardNumber;
++    private String cardHolderName;
++    private String cardHolderAlternateName;
++    private String cardHolderLine1Address;
++    private String cardHolderLine2Address;
++    private String cardHolderCityName;
++    private String cardHolderStateCode;
++    private String cardHolderZipCode;
++    private String cardHolderWorkPhoneNumber;
++    private KualiDecimal cardLimit;
++    private KualiDecimal cardCycleAmountLimit;
++    private KualiDecimal cardCycleVolumeLimit;
++    private String cardStatusCode;
++    private String cardNoteText;
++    private String chartOfAccountsCode;
++    private String accountNumber;
++    private String subAccountNumber;
++
++    private Account account;
++    private Chart chartOfAccounts;
++    private SubAccount subAccount;
++    private ProcurementCardHolderDetail procurementCardHolderDetail;
++
++    /**
++     * Default constructor.
++     */
++    public ProcurementCardHolder() {
++
++    }
++
++    /**
++     * Gets the documentNumber attribute.
++     * 
++     * @return Returns the documentNumber
++     */
++    public String getDocumentNumber() {
++        return documentNumber;
++    }
++
++    /**
++     * Sets the documentNumber attribute.
++     * 
++     * @param documentNumber The documentNumber to set.
++     */
++    public void setDocumentNumber(String documentNumber) {
++        this.documentNumber = documentNumber;
++    }
++
++
++    /**
++     * Gets the transactionCreditCardNumber attribute.
++     * 
++     * @return Returns the transactionCreditCardNumber
++     */
++    public String getTransactionCreditCardNumber() {
++        return transactionCreditCardNumber;
++    }
++
++    /**
++     * Sets the transactionCreditCardNumber attribute.
++     * 
++     * @param transactionCreditCardNumber The transactionCreditCardNumber to set.
++     */
++    public void setTransactionCreditCardNumber(String transactionCreditCardNumber) {
++        this.transactionCreditCardNumber = transactionCreditCardNumber;
++    }
++
++
++    /**
++     * Gets the cardHolderName attribute.
++     * 
++     * @return Returns the cardHolderName
++     */
++    public String getCardHolderName() {
++        return cardHolderName;
++    }
++
++    /**
++     * Sets the cardHolderName attribute.
++     * 
++     * @param cardHolderName The cardHolderName to set.
++     */
++    public void setCardHolderName(String cardHolderName) {
++        this.cardHolderName = cardHolderName;
++    }
++
++
++    /**
++     * Gets the cardHolderAlternateName attribute.
++     * 
++     * @return Returns the cardHolderAlternateName
++     */
++    public String getCardHolderAlternateName() {
++        return cardHolderAlternateName;
++    }
++
++    /**
++     * Sets the cardHolderAlternateName attribute.
++     * 
++     * @param cardHolderAlternateName The cardHolderAlternateName to set.
++     */
++    public void setCardHolderAlternateName(String cardHolderAlternateName) {
++        this.cardHolderAlternateName = cardHolderAlternateName;
++    }
++
++
++    /**
++     * Gets the cardHolderLine1Address attribute.
++     * 
++     * @return Returns the cardHolderLine1Address
++     */
++    public String getCardHolderLine1Address() {
++        return cardHolderLine1Address;
++    }
++
++    /**
++     * Sets the cardHolderLine1Address attribute.
++     * 
++     * @param cardHolderLine1Address The cardHolderLine1Address to set.
++     */
++    public void setCardHolderLine1Address(String cardHolderLine1Address) {
++        this.cardHolderLine1Address = cardHolderLine1Address;
++    }
++
++
++    /**
++     * Gets the cardHolderLine2Address attribute.
++     * 
++     * @return Returns the cardHolderLine2Address
++     */
++    public String getCardHolderLine2Address() {
++        return cardHolderLine2Address;
++    }
++
++    /**
++     * Sets the cardHolderLine2Address attribute.
++     * 
++     * @param cardHolderLine2Address The cardHolderLine2Address to set.
++     */
++    public void setCardHolderLine2Address(String cardHolderLine2Address) {
++        this.cardHolderLine2Address = cardHolderLine2Address;
++    }
++
++
++    /**
++     * Gets the cardHolderCityName attribute.
++     * 
++     * @return Returns the cardHolderCityName
++     */
++    public String getCardHolderCityName() {
++        return cardHolderCityName;
++    }
++
++    /**
++     * Sets the cardHolderCityName attribute.
++     * 
++     * @param cardHolderCityName The cardHolderCityName to set.
++     */
++    public void setCardHolderCityName(String cardHolderCityName) {
++        this.cardHolderCityName = cardHolderCityName;
++    }
++
++
++    /**
++     * Gets the cardHolderStateCode attribute.
++     * 
++     * @return Returns the cardHolderStateCode
++     */
++    public String getCardHolderStateCode() {
++        return cardHolderStateCode;
++    }
++
++    /**
++     * Sets the cardHolderStateCode attribute.
++     * 
++     * @param cardHolderStateCode The cardHolderStateCode to set.
++     */
++    public void setCardHolderStateCode(String cardHolderStateCode) {
++        this.cardHolderStateCode = cardHolderStateCode;
++    }
++
++
++    /**
++     * Gets the cardHolderZipCode attribute.
++     * 
++     * @return Returns the cardHolderZipCode
++     */
++    public String getCardHolderZipCode() {
++        return cardHolderZipCode;
++    }
++
++    /**
++     * Sets the cardHolderZipCode attribute.
++     * 
++     * @param cardHolderZipCode The cardHolderZipCode to set.
++     */
++    public void setCardHolderZipCode(String cardHolderZipCode) {
++        this.cardHolderZipCode = cardHolderZipCode;
++    }
++
++
++    /**
++     * Gets the cardHolderWorkPhoneNumber attribute.
++     * 
++     * @return Returns the cardHolderWorkPhoneNumber
++     */
++    public String getCardHolderWorkPhoneNumber() {
++        return cardHolderWorkPhoneNumber;
++    }
++
++    /**
++     * Sets the cardHolderWorkPhoneNumber attribute.
++     * 
++     * @param cardHolderWorkPhoneNumber The cardHolderWorkPhoneNumber to set.
++     */
++    public void setCardHolderWorkPhoneNumber(String cardHolderWorkPhoneNumber) {
++        this.cardHolderWorkPhoneNumber = cardHolderWorkPhoneNumber;
++    }
++
++
++    /**
++     * Gets the cardLimit attribute.
++     * 
++     * @return Returns the cardLimit
++     */
++    public KualiDecimal getCardLimit() {
++        return cardLimit;
++    }
++
++    /**
++     * Sets the cardLimit attribute.
++     * 
++     * @param cardLimit The cardLimit to set.
++     */
++    public void setCardLimit(KualiDecimal cardLimit) {
++        this.cardLimit = cardLimit;
++    }
++
++
++    /**
++     * Gets the cardCycleAmountLimit attribute.
++     * 
++     * @return Returns the cardCycleAmountLimit
++     */
++    public KualiDecimal getCardCycleAmountLimit() {
++        return cardCycleAmountLimit;
++    }
++
++    /**
++     * Sets the cardCycleAmountLimit attribute.
++     * 
++     * @param cardCycleAmountLimit The cardCycleAmountLimit to set.
++     */
++    public void setCardCycleAmountLimit(KualiDecimal cardCycleAmountLimit) {
++        this.cardCycleAmountLimit = cardCycleAmountLimit;
++    }
++
++
++    /**
++     * Gets the cardCycleVolumeLimit attribute.
++     * 
++     * @return Returns the cardCycleVolumeLimit
++     */
++    public KualiDecimal getCardCycleVolumeLimit() {
++        return cardCycleVolumeLimit;
++    }
++
++    /**
++     * Sets the cardCycleVolumeLimit attribute.
++     * 
++     * @param cardCycleVolumeLimit The cardCycleVolumeLimit to set.
++     */
++    public void setCardCycleVolumeLimit(KualiDecimal cardCycleVolumeLimit) {
++        this.cardCycleVolumeLimit = cardCycleVolumeLimit;
++    }
++
++
++    /**
++     * Gets the cardStatusCode attribute.
++     * 
++     * @return Returns the cardStatusCode
++     */
++    public String getCardStatusCode() {
++        return cardStatusCode;
++    }
++
++    /**
++     * Sets the cardStatusCode attribute.
++     * 
++     * @param cardStatusCode The cardStatusCode to set.
++     */
++    public void setCardStatusCode(String cardStatusCode) {
++        this.cardStatusCode = cardStatusCode;
++    }
++
++
++    /**
++     * Gets the cardNoteText attribute.
++     * 
++     * @return Returns the cardNoteText
++     */
++    public String getCardNoteText() {
++        return cardNoteText;
++    }
++
++    /**
++     * Sets the cardNoteText attribute.
++     * 
++     * @param cardNoteText The cardNoteText to set.
++     */
++    public void setCardNoteText(String cardNoteText) {
++        this.cardNoteText = cardNoteText;
++    }
++
++
++    /**
++     * Gets the chartOfAccountsCode attribute.
++     * 
++     * @return Returns the chartOfAccountsCode
++     */
++    public String getChartOfAccountsCode() {
++        return chartOfAccountsCode;
++    }
++
++    /**
++     * Sets the chartOfAccountsCode attribute.
++     * 
++     * @param chartOfAccountsCode The chartOfAccountsCode to set.
++     */
++    public void setChartOfAccountsCode(String chartOfAccountsCode) {
++        this.chartOfAccountsCode = chartOfAccountsCode;
++    }
++
++
++    /**
++     * Gets the accountNumber attribute.
++     * 
++     * @return Returns the accountNumber
++     */
++    public String getAccountNumber() {
++        return accountNumber;
++    }
++
++    /**
++     * Sets the accountNumber attribute.
++     * 
++     * @param accountNumber The accountNumber to set.
++     */
++    public void setAccountNumber(String accountNumber) {
++        this.accountNumber = accountNumber;
++    }
++
++
++    /**
++     * Gets the subAccountNumber attribute.
++     * 
++     * @return Returns the subAccountNumber
++     */
++    public String getSubAccountNumber() {
++        return subAccountNumber;
++    }
++
++    /**
++     * Sets the subAccountNumber attribute.
++     * 
++     * @param subAccountNumber The subAccountNumber to set.
++     */
++    public void setSubAccountNumber(String subAccountNumber) {
++        this.subAccountNumber = subAccountNumber;
++    }
++
++
++    /**
++     * Gets the account attribute.
++     * 
++     * @return Returns the account
++     */
++    public Account getAccount() {
++        return account;
++    }
++
++    /**
++     * Sets the account attribute.
++     * 
++     * @param account The account to set.
++     * @deprecated
++     */
++    public void setAccount(Account account) {
++        this.account = account;
++    }
++
++    /**
++     * Gets the chartOfAccounts attribute.
++     * 
++     * @return Returns the chartOfAccounts
++     */
++    public Chart getChartOfAccounts() {
++        return chartOfAccounts;
++    }
++
++    /**
++     * Sets the chartOfAccounts attribute.
++     * 
++     * @param chartOfAccounts The chartOfAccounts to set.
++     * @deprecated
++     */
++    public void setChartOfAccounts(Chart chartOfAccounts) {
++        this.chartOfAccounts = chartOfAccounts;
++    }
++
++    /**
++     * @return Returns the subAccount.
++     */
++    public SubAccount getSubAccount() {
++        return subAccount;
++    }
++
++    /**
++     * Sets the subAccount attribute.
++     * 
++     * @param subAccount The subAccount to set.
++     * @deprecated
++     */
++    public void setSubAccount(SubAccount subAccount) {
++        this.subAccount = subAccount;
++    }
++    
++    /**
++     * @return Returns the procurementCardHolderDetail.
++     */
++    public ProcurementCardHolderDetail getProcurementCardHolderDetail() {
++        return procurementCardHolderDetail;
++    }
++    
++    /**
++     * Sets the procurementCardHolderDetail attribute.
++     * 
++     * @param procurementCardHolderDetail The procurementCardHolderDetail to set.
++     * @deprecated
++     */
++    public void setProcurementCardHolderDetail(ProcurementCardHolderDetail procurementCardHolderDetail) {
++        this.procurementCardHolderDetail = procurementCardHolderDetail;
++    }
++
++    /**
++     * @see org.kuali.rice.kns.bo.BusinessObjectBase#toStringMapper()
++     */
++    protected LinkedHashMap toStringMapper() {
++        LinkedHashMap m = new LinkedHashMap();
++        m.put(KFSPropertyConstants.DOCUMENT_NUMBER, this.documentNumber);
++        return m;
++    }
++}
+
+Property changes on: financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardHolder.java
+___________________________________________________________________
+Added: svn:mime-type
+## -0,0 +1 ##
++text/plain
+\ No newline at end of property
+Index: work/src/edu/arizona/kfs/fp/identity/ProcurementCardHolderDerivedRoleTypeServiceImpl.java
+===================================================================
+--- work/src/edu/arizona/kfs/fp/identity/ProcurementCardHolderDerivedRoleTypeServiceImpl.java	(revision 0)
++++ work/src/edu/arizona/kfs/fp/identity/ProcurementCardHolderDerivedRoleTypeServiceImpl.java	(revision 2243)
+@@ -0,0 +1,38 @@
++/*
++ * Copyright 2008 The Kuali Foundation.
++ * 
++ * Licensed under the Educational Community License, Version 1.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ * 
++ * http://www.opensource.org/licenses/ecl1.php
++ * 
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++package edu.arizona.kfs.fp.identity;
++
++import java.util.ArrayList;
++import java.util.List;
++
++import org.apache.commons.lang.StringUtils;
++import org.kuali.rice.kim.bo.Role;
++import org.kuali.rice.kim.bo.role.dto.RoleMembershipInfo;
++import org.kuali.rice.kim.bo.types.dto.AttributeSet;
++import org.kuali.rice.kim.service.support.impl.KimDerivedRoleTypeServiceBase;
++
++public class ProcurementCardHolderDerivedRoleTypeServiceImpl extends KimDerivedRoleTypeServiceBase {
++    public static final String PROCUREMENT_CARDHOLDER_USER_ID = "cardHolderSystemId";
++    
++    @Override
++    public List<RoleMembershipInfo> getRoleMembersFromApplicationRole(String namespaceCode, String roleName, AttributeSet qualification) {
++        List<RoleMembershipInfo> members = new ArrayList<RoleMembershipInfo>(1);
++        if ((qualification != null) && StringUtils.isNotBlank(qualification.get(PROCUREMENT_CARDHOLDER_USER_ID))) {
++            members.add(new RoleMembershipInfo(null, null, qualification.get(PROCUREMENT_CARDHOLDER_USER_ID), Role.PRINCIPAL_MEMBER_TYPE, null));
++        }
++        return members;
++    }
++}
+\ No newline at end of file
+
+Property changes on: financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/identity/ProcurementCardHolderDerivedRoleTypeServiceImpl.java
+___________________________________________________________________
+Added: svn:mime-type
+## -0,0 +1 ##
++text/plain
+\ No newline at end of property
+Index: work/src/edu/arizona/kfs/fp/identity/ProcurementCardReconcilerDerivedRoleTypeServiceImpl.java
+===================================================================
+--- work/src/edu/arizona/kfs/fp/identity/ProcurementCardReconcilerDerivedRoleTypeServiceImpl.java	(revision 0)
++++ work/src/edu/arizona/kfs/fp/identity/ProcurementCardReconcilerDerivedRoleTypeServiceImpl.java	(revision 2243)
+@@ -0,0 +1,44 @@
++/*
++ * Copyright 2008 The Kuali Foundation.
++ * 
++ * Licensed under the Educational Community License, Version 1.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ * 
++ * http://www.opensource.org/licenses/ecl1.php
++ * 
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++package edu.arizona.kfs.fp.identity;
++
++import java.util.ArrayList;
++import java.util.List;
++
++import org.apache.commons.lang.StringUtils;
++import org.kuali.kfs.sys.context.SpringContext;
++import org.kuali.rice.kim.bo.Role;
++import org.kuali.rice.kim.bo.role.dto.RoleMembershipInfo;
++import org.kuali.rice.kim.bo.types.dto.AttributeSet;
++import org.kuali.rice.kim.service.support.impl.KimDerivedRoleTypeServiceBase;
++import org.kuali.rice.kim.service.GroupService;
++
++public class ProcurementCardReconcilerDerivedRoleTypeServiceImpl extends KimDerivedRoleTypeServiceBase {
++    public static final String PROCUREMENT_CARD_RECONCILER_GROUP_ID = "cardGroupId";
++    @Override
++    public List<RoleMembershipInfo> getRoleMembersFromApplicationRole(String namespaceCode, String roleName, AttributeSet qualification) {
++        List<String> groupMembers = new ArrayList<String>();
++        List<RoleMembershipInfo> members = new ArrayList<RoleMembershipInfo>();
++        if ((qualification != null) && StringUtils.isNotBlank(qualification.get(PROCUREMENT_CARD_RECONCILER_GROUP_ID))) {
++            groupMembers = SpringContext.getBean(GroupService.class).getMemberPrincipalIds(qualification.get(PROCUREMENT_CARD_RECONCILER_GROUP_ID));
++            for (String groupMember : groupMembers) {
++                members.add(new RoleMembershipInfo(null, null, groupMember, Role.PRINCIPAL_MEMBER_TYPE, null));
++            }
++            
++        }
++        return members;
++    }
++}
+\ No newline at end of file
+
+Property changes on: financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/identity/ProcurementCardReconcilerDerivedRoleTypeServiceImpl.java
+___________________________________________________________________
+Added: svn:mime-type
+## -0,0 +1 ##
++text/plain
+\ No newline at end of property
+Index: work/src/edu/arizona/kfs/fp/document/datadictionary/ProcurementCardDocument.xml
+===================================================================
+--- work/src/edu/arizona/kfs/fp/document/datadictionary/ProcurementCardDocument.xml	(revision 0)
++++ work/src/edu/arizona/kfs/fp/document/datadictionary/ProcurementCardDocument.xml	(revision 2243)
+@@ -0,0 +1,166 @@
++<?xml version="1.0" encoding="UTF-8"?><beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:dd="http://rice.kuali.org/dd" xsi:schemaLocation="http://www.springframework.org/schema/beans         http://www.springframework.org/schema/beans/spring-beans-2.0.xsd         http://rice.kuali.org/dd         http://rice.kuali.org/dd/dd.xsd">
++
++  <bean id="ProcurementCardDocument" parent="ProcurementCardDocument-parentBean"/>
++  <bean id="ProcurementCardDocument-parentBean" abstract="true" parent="AccountingDocumentEntry">
++    <property name="documentTypeName" value="PCDO"/>
++    <property name="documentClass" value="edu.arizona.kfs.fp.document.ProcurementCardDocument"/>
++    <property name="businessRulesClass" value="org.kuali.kfs.sys.document.validation.impl.AccountingRuleEngineRuleBase"/>
++    <property name="documentAuthorizerClass" value="org.kuali.kfs.fp.document.authorization.ProcurementCardDocumentAuthorizer"/>
++    <property name="documentPresentationControllerClass" value="org.kuali.kfs.fp.document.authorization.ProcurementCardDocumentPresentationController"/>
++    
++    <property name="sessionDocument" value="true"/>
++    <property name="allowsErrorCorrection" value="false"/>
++
++    <property name="validationMap" ref="ProcurementCardDocument-validations"/>
++    <property name="accountingLineGroups">
++    	<map>
++	    	<entry>
++	    		<key><value>target</value></key>
++	    		<ref bean="ProcurementCardDocument-targetAccountingLineGroup" parent="AccountingLineGroup"/>
++	    	</entry>
++    	</map>
++    </property>  
++    <property name="importedLineParserClass" value="org.kuali.kfs.sys.businessobject.AccountingLineParserBase"/>
++    <property name="workflowAttributes">
++    	<ref bean="ProcurementCardDocument-workflowAttributes"/>
++    </property>   
++  </bean>
++  
++  <!-- Validations -->
++  <bean id="ProcurementCardDocument-validations" parent="ProcurementCardDocument-validations-parentBean"/>
++  <bean id="ProcurementCardDocument-validations-parentBean" class="org.springframework.beans.factory.config.MapFactoryBean">
++  	<property name="sourceMap">
++		<map>
++			<entry>
++				<key><value>org.kuali.kfs.sys.document.validation.event.AttributedRouteDocumentEvent</value></key>
++				<value>ProcurementCard-routeDocumentValidation</value>
++			</entry>
++			<entry>
++				<key><value>org.kuali.kfs.sys.document.validation.event.AttributedApproveDocumentEvent</value></key>
++				<value>ProcurementCard-approveDocumentValidation</value>
++			</entry>
++			<entry>
++				<key><value>org.kuali.kfs.sys.document.validation.event.AddAccountingLineEvent</value></key>
++				<value>ProcurementCard-addAccountingLineValidation</value>
++			</entry>
++			<entry>
++				<key><value>org.kuali.kfs.sys.document.validation.event.DeleteAccountingLineEvent</value></key>
++				<value>ProcurementCard-deleteAccountingLineValidation</value>
++			</entry>
++			<entry>
++				<key><value>org.kuali.kfs.sys.document.validation.event.UpdateAccountingLineEvent</value></key>
++				<value>ProcurementCard-updateAccountingLineValidation</value>
++			</entry>
++			<entry>
++				<key><value>org.kuali.kfs.sys.document.validation.event.ReviewAccountingLineEvent</value></key>
++				<value>ProcurementCard-reviewAccountingLineValidation</value>
++			</entry>
++    	</map>
++    </property>
++  </bean>
++
++  <!-- accounting line groups -->	
++  <bean id="ProcurementCardDocument-targetAccountingLineGroup" parent="ProcurementCardDocument-targetAccountingLineGroup-parentBean"/>	
++  <bean id="ProcurementCardDocument-targetAccountingLineGroup-parentBean" parent="AccountingLineGroup" abstract="true">
++	  <property name="accountingLineView" ref="ProcurementCard-accountingLineView"/>
++	  <property name="accountingLineClass" value="org.kuali.kfs.fp.businessobject.ProcurementCardTargetAccountingLine"/>
++	  <property name="groupLabel" value="Accounting Lines"/>
++	  <property name="accountingLineAuthorizerClass" value="org.kuali.kfs.fp.document.authorization.ProcurementCardAccountingLineAuthorizer"/>
++	  <property name="importedLinePropertyPrefix" value="target"/>
++	  <property name="totals" ref="ProcurementCard-targetGroupTotals"/>
++	  <property name="errorKey" value="document.targetAccounting*,targetAccountingLines,newTargetLine*"/>
++  </bean>
++  
++  <bean id="ProcurementCard-accountingLineView" parent="ProcurementCard-accountingLineView-parent"/> 
++  <bean id="ProcurementCard-accountingLineView-parent" parent="AccountingLineView" abstract="true">
++		<property name="elements">
++			<list>
++				<bean parent="AccountingLineView-countedSequenceNumber"/>
++				<bean parent="AccountingLineView-lines">
++					<property name="lines">
++						<list>
++							<ref bean="accountingInformation"/>
++							<ref bean="salesTaxInformation"/>
++						</list>
++					</property>
++				</bean>
++				<bean parent="AccountingLineView-field" p:name="amount" p:required="true"/>
++				<bean parent="AccountingLineView-actions"/>
++			</list>
++		</property>
++  </bean>
++  
++  <bean id="ProcurementCard-targetGroupTotals" class="org.springframework.beans.factory.config.ListFactoryBean">
++    	<property name="sourceList">
++    		<list>
++    			<bean class="org.kuali.kfs.fp.document.web.ProcurementCardGroupTotalDefinition" p:totalProperty="targetTotal" p:representedProperty="amount"/>
++    		</list>
++    	</property>
++  </bean>
++    
++  <!-- workflow attributes for routing -->
++  <bean id="ProcurementCardDocument-workflowAttributes" parent="ProcurementCardDocument-workflowAttributes-parentBean"/>    
++  <bean id="ProcurementCardDocument-workflowAttributes-parentBean" abstract="true" parent="WorkflowAttributes">    	
++    	<property name="routingTypeDefinitions">
++    		<map>
++     			<entry key="AccountFullEdit" value-ref="RoutingType-AccountingDocument-Account-targetOnly"/>   		
++    			<entry key="Account" value-ref="RoutingType-AccountingDocument-Account-targetOnly"/>
++    			<entry key="AccountingOrganizationHierarchy" value-ref="RoutingType-AccountingDocument-OrganizationHierarchy-targetOnly"/>
++    			<entry key="ProcurementCardholder" value-ref="RoutingType-ProcurementCardDocument-ProcurementCardholder"/>
++    			<entry key="ProcurementCardReconciler" value-ref="RoutingType-ProcurementCardDocument-ProcurementCardReconciler"/>
++    			<entry key="SubFund" value-ref="RoutingType-AccountingDocument-SubFund-targetOnly"/>
++    		</map>
++    	</property>
++  </bean>
++  
++  <bean id="ProcurementCardDocument-RoutingAttribute-cardHolderSystemId" class="org.kuali.rice.kns.datadictionary.RoutingAttribute">
++    	<property name="qualificationAttributeName" value="cardHolderSystemId"/>
++  </bean>
++  
++  <bean id="ProcurementCardDocument-RoutingAttribute-cardGroupId" class="org.kuali.rice.kns.datadictionary.RoutingAttribute">
++    	<property name="qualificationAttributeName" value="cardGroupId"/>
++  </bean>
++	
++  <bean id="ProcurementCardDocument-DocumentValuePathGroup-cardHolderSystemId" class="org.kuali.rice.kns.datadictionary.DocumentValuePathGroup">
++  	<property name="documentValues">
++		<list>
++	   		<value>procurementCardHolder.procurementCardHolderDetail.cardHolderSystemId</value>   			
++		</list>
++  	</property>
++  </bean>
++   	
++   <bean id="ProcurementCardDocument-DocumentValuePathGroup-cardGroupId" class="org.kuali.rice.kns.datadictionary.DocumentValuePathGroup">
++  	<property name="documentValues">
++		<list>
++	   		<value>procurementCardHolder.procurementCardHolderDetail.cardGroupId</value>   			
++		</list>
++  	</property>
++  </bean>
++   	
++  <bean id="RoutingType-ProcurementCardDocument-ProcurementCardholder" class="org.kuali.rice.kns.datadictionary.RoutingTypeDefinition">
++  	<property name="routingAttributes">
++    	<list>
++	    	<ref bean="ProcurementCardDocument-RoutingAttribute-cardHolderSystemId"/>		       
++        </list>
++    </property>
++    	<property name="documentValuePathGroups">
++    		<list>
++    			<ref bean="ProcurementCardDocument-DocumentValuePathGroup-cardHolderSystemId"/>
++    		</list>
++    	</property>
++  </bean>  
++  
++  <bean id="RoutingType-ProcurementCardDocument-ProcurementCardReconciler" class="org.kuali.rice.kns.datadictionary.RoutingTypeDefinition">
++  	<property name="routingAttributes">
++    	<list>
++	    	<ref bean="ProcurementCardDocument-RoutingAttribute-cardGroupId"/>		       
++        </list>
++    </property>
++    	<property name="documentValuePathGroups">
++    		<list>
++    			<ref bean="ProcurementCardDocument-DocumentValuePathGroup-cardGroupId"/>
++    		</list>
++    	</property>
++  </bean>  
++  
++</beans>
+\ No newline at end of file
+
+Property changes on: financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/document/datadictionary/ProcurementCardDocument.xml
+___________________________________________________________________
+Added: svn:mime-type
+## -0,0 +1 ##
++text/plain
+\ No newline at end of property
+Index: work/src/edu/arizona/kfs/fp/document/workflow/ProcurementCardDocument.xml
+===================================================================
+--- work/src/edu/arizona/kfs/fp/document/workflow/ProcurementCardDocument.xml	(revision 0)
++++ work/src/edu/arizona/kfs/fp/document/workflow/ProcurementCardDocument.xml	(revision 2243)
+@@ -0,0 +1,63 @@
++<?xml version='1.0' encoding='UTF-8'?> 
++<data xmlns="ns:workflow" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
++  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
++    <documentType>
++      <name>PCDO</name>
++      <parent>FP</parent>
++      <docHandler>${application.url}/financialProcurementCard.do?methodToCall=docHandler</docHandler>
++      <routePaths>       
++        <routePath>
++          <start name="AdHoc" nextNode="HasReconciler"/>
++          <split name="HasReconciler" nextNode="AccountFullEdit">
++            <branch name="True">
++              <requests name="ProcurementCardholder" nextNode="ProcurementCardReconciler"/>
++              <requests name="ProcurementCardReconciler" nextNode="Join"/>
++            </branch>
++            <branch name="False">
++              <simple name="NoOp" nextNode="Join"/>
++            </branch>
++            <join name="Join"/>
++          </split>
++          <requests name="AccountFullEdit" nextNode="Account"/>
++          <requests name="Account" nextNode="AccountingOrganizationHierarchy"/>
++          <requests name="AccountingOrganizationHierarchy" nextNode="SubFund"/>
++          <requests name="SubFund"/>
++        </routePath>        
++      </routePaths>
++      <routeNodes>
++        <start name="AdHoc"/>
++        <role name="AccountFullEdit">
++          <qualifierResolverClass>org.kuali.rice.kns.workflow.attribute.DataDictionaryQualifierResolver</qualifierResolverClass>
++          <activationType>P</activationType>
++        </role>
++        <role name="Account">
++          <qualifierResolverClass>org.kuali.rice.kns.workflow.attribute.DataDictionaryQualifierResolver</qualifierResolverClass>
++          <activationType>P</activationType>
++        </role>
++        <role name="AccountingOrganizationHierarchy">
++          <qualifierResolverClass>org.kuali.rice.kns.workflow.attribute.DataDictionaryQualifierResolver</qualifierResolverClass>
++          <activationType>P</activationType>
++        </role>
++        <role name="ProcurementCardholder">
++          <qualifierResolverClass>org.kuali.rice.kns.workflow.attribute.DataDictionaryQualifierResolver</qualifierResolverClass>
++          <activationType>P</activationType>
++        </role>
++        <role name="ProcurementCardReconciler">
++          <qualifierResolverClass>org.kuali.rice.kns.workflow.attribute.DataDictionaryQualifierResolver</qualifierResolverClass>
++          <activationType>P</activationType>
++        </role>
++        <role name="SubFund">
++          <qualifierResolverClass>org.kuali.rice.kns.workflow.attribute.DataDictionaryQualifierResolver</qualifierResolverClass>
++          <activationType>P</activationType>
++        </role>
++         <split name="HasReconciler">
++          <type>org.kuali.kfs.sys.document.workflow.SimpleBooleanSplitNode</type>
++        </split>
++        <simple name="NoOp">
++          <type>org.kuali.rice.kew.engine.node.NoOpNode</type>
++        </simple>
++        <join name="Join"/>
++      </routeNodes>
++    </documentType>
++  </documentTypes>
++</data>
+\ No newline at end of file
+
+Property changes on: financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/document/workflow/ProcurementCardDocument.xml
+___________________________________________________________________
+Added: svn:mime-type
+## -0,0 +1 ##
++text/plain
+\ No newline at end of property
+Index: work/src/edu/arizona/kfs/fp/document/ProcurementCardDocument.java
+===================================================================
+--- work/src/edu/arizona/kfs/fp/document/ProcurementCardDocument.java	(revision 0)
++++ work/src/edu/arizona/kfs/fp/document/ProcurementCardDocument.java	(revision 2243)
+@@ -0,0 +1,348 @@
++/*
++ * Copyright 2006-2007 The Kuali Foundation.
++ * 
++ * Licensed under the Educational Community License, Version 1.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ * 
++ * http://www.opensource.org/licenses/ecl1.php
++ * 
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package edu.arizona.kfs.fp.document;
++
++import java.util.ArrayList;
++import java.util.Iterator;
++import java.util.LinkedHashMap;
++import java.util.List;
++
++import org.kuali.kfs.fp.businessobject.CapitalAssetInformation;
++import edu.arizona.kfs.fp.businessobject.ProcurementCardHolder;
++import org.kuali.kfs.fp.businessobject.ProcurementCardSourceAccountingLine;
++import org.kuali.kfs.fp.businessobject.ProcurementCardTargetAccountingLine;
++import org.kuali.kfs.fp.businessobject.ProcurementCardTransactionDetail;
++import org.kuali.kfs.fp.document.CapitalAssetEditable;
++import org.kuali.kfs.integration.cam.CapitalAssetManagementModuleService;
++import org.kuali.kfs.sys.KFSConstants;
++import org.kuali.kfs.sys.KFSPropertyConstants;
++import org.kuali.kfs.sys.businessobject.AccountingLine;
++import org.kuali.kfs.sys.businessobject.GeneralLedgerPendingEntrySourceDetail;
++import org.kuali.kfs.sys.businessobject.SourceAccountingLine;
++import org.kuali.kfs.sys.businessobject.TargetAccountingLine;
++import org.kuali.kfs.sys.context.SpringContext;
++import org.kuali.kfs.sys.document.AccountingDocumentBase;
++import org.kuali.kfs.sys.document.AmountTotaling;
++import org.kuali.kfs.sys.document.FinancialSystemMaintenanceDocument;
++import org.kuali.kfs.sys.document.FinancialSystemTransactionalDocument;
++import org.kuali.kfs.sys.document.service.DebitDeterminerService;
++import org.kuali.rice.kew.dto.DocumentRouteStatusChangeDTO;
++import org.kuali.rice.kew.util.KEWConstants;
++import org.kuali.rice.kns.document.Document;
++import org.kuali.rice.kns.exception.ValidationException;
++import org.kuali.rice.kns.rule.event.KualiDocumentEvent;
++import org.kuali.rice.kns.rule.event.SaveDocumentEvent;
++import org.kuali.rice.kns.service.DataDictionaryService;
++import org.kuali.rice.kns.service.DocumentService;
++import org.kuali.rice.kns.util.ObjectUtils;
++import org.kuali.rice.kns.util.TypedArrayList;
++import org.kuali.rice.kns.workflow.service.KualiWorkflowDocument;
++
++/**
++ * This is the Procurement Card Document Class. The procurement cards distributes expenses from clearing accounts. It is a two-sided
++ * document, but only target lines are displayed because source lines cannot be changed. Transaction, Card, and Vendor information
++ * are associated with the document to help better distribute the expense.
++ */
++public class ProcurementCardDocument extends AccountingDocumentBase implements AmountTotaling, CapitalAssetEditable {
++    private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(ProcurementCardDocument.class);
++
++    private static final String HAS_RECONCILER_NODE = "HasReconciler";
++    
++    private ProcurementCardHolder procurementCardHolder;
++
++    private List transactionEntries;
++    
++    private CapitalAssetInformation capitalAssetInformation;
++    private CapitalAssetManagementModuleService capitalAssetManagementModuleService;
++
++    /**
++     * Default constructor.
++     */
++    public ProcurementCardDocument() {
++        super();
++        transactionEntries = new TypedArrayList(ProcurementCardTransactionDetail.class);
++    }
++
++    /**
++     * @return Returns the transactionEntries.
++     */
++    public List getTransactionEntries() {
++        return transactionEntries;
++    }
++
++    /**
++     * @param transactionEntries The transactionEntries to set.
++     */
++    public void setTransactionEntries(List transactionEntries) {
++        this.transactionEntries = transactionEntries;
++    }
++
++    /**
++     * Gets the procurementCardHolder attribute.
++     * 
++     * @return Returns the procurementCardHolder.
++     */
++    public ProcurementCardHolder getProcurementCardHolder() {
++        return procurementCardHolder;
++    }
++
++    /**
++     * Sets the procurementCardHolder attribute value.
++     * 
++     * @param procurementCardHolder The procurementCardHolder to set.
++     */
++    public void setProcurementCardHolder(ProcurementCardHolder procurementCardHolder) {
++        this.procurementCardHolder = procurementCardHolder;
++    }
++
++    /**
++     * Removes the target accounting line at the given index from the transaction detail entry.
++     * 
++     * @param index
++     */
++    public void removeTargetAccountingLine(int index) {
++        ProcurementCardTargetAccountingLine line = (ProcurementCardTargetAccountingLine) getTargetAccountingLines().get(index);
++
++        for (Iterator iter = transactionEntries.iterator(); iter.hasNext();) {
++            ProcurementCardTransactionDetail transactionEntry = (ProcurementCardTransactionDetail) iter.next();
++            if (transactionEntry.getFinancialDocumentTransactionLineNumber().equals(line.getFinancialDocumentTransactionLineNumber())) {
++                transactionEntry.getTargetAccountingLines().remove(line);
++            }
++        }
++    }
++
++    /**
++     * Override to set the accounting line in the transaction detail object.
++     * 
++     * @see org.kuali.kfs.sys.document.AccountingDocument#addSourceAccountingLine(SourceAccountingLine)
++     */
++    @Override
++    public void addSourceAccountingLine(SourceAccountingLine sourceLine) {
++        ProcurementCardSourceAccountingLine line = (ProcurementCardSourceAccountingLine) sourceLine;
++
++        line.setSequenceNumber(this.getNextSourceLineNumber());
++
++        for (Iterator iter = transactionEntries.iterator(); iter.hasNext();) {
++            ProcurementCardTransactionDetail transactionEntry = (ProcurementCardTransactionDetail) iter.next();
++            if (transactionEntry.getFinancialDocumentTransactionLineNumber().equals(line.getFinancialDocumentTransactionLineNumber())) {
++                transactionEntry.getSourceAccountingLines().add(line);
++            }
++        }
++
++        this.nextSourceLineNumber = new Integer(this.getNextSourceLineNumber().intValue() + 1);
++    }
++
++    /**
++     * Override to set the accounting line in the transaction detail object.
++     * 
++     * @see org.kuali.kfs.sys.document.AccountingDocument#addTargetAccountingLine(TargetAccountingLine)
++     */
++    @Override
++    public void addTargetAccountingLine(TargetAccountingLine targetLine) {
++        ProcurementCardTargetAccountingLine line = (ProcurementCardTargetAccountingLine) targetLine;
++
++        line.setSequenceNumber(this.getNextTargetLineNumber());
++
++        for (Iterator iter = transactionEntries.iterator(); iter.hasNext();) {
++            ProcurementCardTransactionDetail transactionEntry = (ProcurementCardTransactionDetail) iter.next();
++            if (transactionEntry.getFinancialDocumentTransactionLineNumber().equals(line.getFinancialDocumentTransactionLineNumber())) {
++                transactionEntry.getTargetAccountingLines().add(line);
++            }
++        }
++
++        this.nextTargetLineNumber = new Integer(this.getNextTargetLineNumber().intValue() + 1);
++    }
++
++    /**
++     * Override to get source accounting lines out of transactions
++     * 
++     * @see org.kuali.kfs.sys.document.AccountingDocument#getSourceAccountingLines()
++     */
++    @Override
++    public List getSourceAccountingLines() {
++        List sourceAccountingLines = new ArrayList();
++
++        for (Iterator iter = transactionEntries.iterator(); iter.hasNext();) {
++            ProcurementCardTransactionDetail transactionEntry = (ProcurementCardTransactionDetail) iter.next();
++            for (Iterator iterator = transactionEntry.getSourceAccountingLines().iterator(); iterator.hasNext();) {
++                SourceAccountingLine sourceLine = (SourceAccountingLine) iterator.next();
++                sourceAccountingLines.add(sourceLine);
++            }
++        }
++
++        return sourceAccountingLines;
++    }
++
++    /**
++     * Override to get target accounting lines out of transactions
++     * 
++     * @see org.kuali.kfs.sys.document.AccountingDocument#getTargetAccountingLines()
++     */
++    @Override
++    public List getTargetAccountingLines() {
++        List targetAccountingLines = new ArrayList();
++
++        for (Iterator iter = transactionEntries.iterator(); iter.hasNext();) {
++            ProcurementCardTransactionDetail transactionEntry = (ProcurementCardTransactionDetail) iter.next();
++            for (Iterator iterator = transactionEntry.getTargetAccountingLines().iterator(); iterator.hasNext();) {
++                TargetAccountingLine targetLine = (TargetAccountingLine) iterator.next();
++                targetAccountingLines.add(targetLine);
++            }
++        }
++
++        return targetAccountingLines;
++    }
++
++    /**
++     * @see org.kuali.kfs.sys.document.AccountingDocumentBase#getSourceAccountingLineClass()
++     */
++    @Override
++    public Class getSourceAccountingLineClass() {
++        return ProcurementCardSourceAccountingLine.class;
++    }
++
++    /**
++     * @see org.kuali.kfs.sys.document.AccountingDocumentBase#getTargetAccountingLineClass()
++     */
++    @Override
++    public Class getTargetAccountingLineClass() {
++        return ProcurementCardTargetAccountingLine.class;
++    }
++
++    /**
++     * @see org.kuali.rice.kns.bo.BusinessObjectBase#toStringMapper()
++     */
++    @Override
++    protected LinkedHashMap toStringMapper() {
++        LinkedHashMap m = new LinkedHashMap();
++        m.put(KFSPropertyConstants.DOCUMENT_NUMBER, this.documentNumber);
++        return m;
++    }
++
++    @Override
++    public void doRouteStatusChange(DocumentRouteStatusChangeDTO statusChangeEvent) throws Exception {
++        if (KEWConstants.ROUTE_HEADER_ENROUTE_CD.equals(statusChangeEvent.getNewRouteStatus())) {
++            Document retrievedDocument = SpringContext.getBean(DocumentService.class).getByDocumentHeaderId(statusChangeEvent.getRouteHeaderId().toString());
++            String financialStatusCode = null;
++            if (retrievedDocument instanceof FinancialSystemTransactionalDocument) {
++                financialStatusCode = ((FinancialSystemTransactionalDocument) retrievedDocument).getDocumentHeader().getFinancialDocumentStatusCode();
++            } else if (retrievedDocument instanceof FinancialSystemMaintenanceDocument) {
++                financialStatusCode = ((FinancialSystemMaintenanceDocument) retrievedDocument).getDocumentHeader().getFinancialDocumentStatusCode();
++            }
++            if (KEWConstants.ROUTE_HEADER_ENROUTE_CD.equals(retrievedDocument.getDocumentHeader().getWorkflowDocument().getRouteHeader().getDocRouteStatus()) && !KEWConstants.ROUTE_HEADER_ENROUTE_CD.equals(financialStatusCode)) {
++                throw new RuntimeException("KFS document status is out of sync with Workflow document status");
++            }
++        }
++    }
++
++    /**
++     * On procurement card documents, positive source amounts are credits, negative source amounts are debits.
++     * 
++     * @param transactionalDocument The document the accounting line being checked is located in.
++     * @param accountingLine The accounting line being analyzed.
++     * @return True if the accounting line given is a debit accounting line, false otherwise.
++     * @throws Throws an IllegalStateException if one of the following rules are violated: the accounting line amount
++     *         is zero or the accounting line is not an expense or income accounting line.
++     * 
++     * @see org.kuali.module.financial.rules.FinancialDocumentRuleBase#isDebit(FinancialDocument, org.kuali.rice.kns.bo.AccountingLine)
++     * @see org.kuali.kfs.sys.document.validation.impl.AccountingDocumentRuleBase.IsDebitUtils#isDebitConsideringSection(AccountingDocumentRuleBase, AccountingDocument, AccountingLine)
++     */
++    public boolean isDebit(GeneralLedgerPendingEntrySourceDetail postable) throws IllegalStateException {
++        // disallow error correction
++        DebitDeterminerService isDebitUtils = SpringContext.getBean(DebitDeterminerService.class);
++        isDebitUtils.disallowErrorCorrectionDocumentCheck(this);
++        return isDebitUtils.isDebitConsideringSection(this, (AccountingLine)postable);
++    }
++    
++    /**
++     * Gets the capitalAssetInformation attribute. 
++     * @return Returns the capitalAssetInformation.
++     */
++    public CapitalAssetInformation getCapitalAssetInformation() {
++        return ObjectUtils.isNull(capitalAssetInformation)? null : capitalAssetInformation;
++    }
++
++    /**
++     * Sets the capitalAssetInformation attribute value.
++     * @param capitalAssetInformation The capitalAssetInformation to set.
++     */
++    @Deprecated
++    public void setCapitalAssetInformation(CapitalAssetInformation capitalAssetInformation) {
++        this.capitalAssetInformation = capitalAssetInformation;
++    }
++
++
++    /**
++     * 
++     * @see org.kuali.kfs.sys.document.GeneralLedgerPostingDocumentBase#handleRouteStatusChange()
++     */
++    @Override
++    public void handleRouteStatusChange() {
++        super.handleRouteStatusChange();        
++        this.getCapitalAssetManagementModuleService().deleteDocumentAssetLocks(this);        
++    }
++
++
++    /**
++     * 
++     * @see org.kuali.rice.kns.document.DocumentBase#postProcessSave(org.kuali.rice.kns.rule.event.KualiDocumentEvent)
++     */
++    @Override
++    public void postProcessSave(KualiDocumentEvent event) {
++        super.postProcessSave(event);
++        if (!(event instanceof SaveDocumentEvent)) { // don't lock until they route
++            String documentTypeName = SpringContext.getBean(DataDictionaryService.class).getDocumentTypeNameByClass(this.getClass());
++            this.getCapitalAssetManagementModuleService().generateCapitalAssetLock(this,documentTypeName);
++        }
++    }
++    
++    /**
++     * @return CapitalAssetManagementModuleService
++     */
++    private CapitalAssetManagementModuleService getCapitalAssetManagementModuleService() {
++        if (capitalAssetManagementModuleService == null) {
++            capitalAssetManagementModuleService = SpringContext.getBean(CapitalAssetManagementModuleService.class);
++        }
++        return capitalAssetManagementModuleService;
++    }  
++    
++    /**
++     * Answers true when invoice recurrence details are provided by the user
++     * 
++     * @see org.kuali.kfs.sys.document.FinancialSystemTransactionalDocumentBase#answerSplitNodeQuestion(java.lang.String)
++     */
++    @Override
++    public boolean answerSplitNodeQuestion(String nodeName) throws UnsupportedOperationException {
++        if (HAS_RECONCILER_NODE.equalsIgnoreCase(nodeName)) {
++            return hasReconciler();
++        }       
++        throw new UnsupportedOperationException("ProcurementCardDocument does not implement the answerSplitNodeQuestion method. Node name specified was: " + nodeName);
++    }
++   
++    /**
++     * 
++     * Determines whether this document has a Recurrence filled out enough to create an INVR doc.
++     * @return
++     */
++    private boolean hasReconciler() {
++        return (ObjectUtils.isNotNull(getProcurementCardHolder()) && 
++                ObjectUtils.isNotNull(getProcurementCardHolder().getProcurementCardHolderDetail()) &&
++                ObjectUtils.isNotNull(getProcurementCardHolder().getProcurementCardHolderDetail().getCardGroupId()));
++    }
++
++
++}
+
+Property changes on: financial-system/kfs/trunk/work/src/edu/arizona/kfs/fp/document/ProcurementCardDocument.java
+___________________________________________________________________
+Added: svn:mime-type
+## -0,0 +1 ##
++text/plain
+\ No newline at end of property

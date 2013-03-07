@@ -26,10 +26,21 @@ this README contains several informative sections:
   revision numbers that are _not_ included in the patches, or raw patches, but that touched one
   or more key files involved in this modification.
 
+Disclaimer
+==========
+
+> There are several commits for KITT-235 that contain changes to `data.sql` which is where we were keeping SQL changes during this enhancement. The commits with changes to data.sql include: 1109, 2244, 3153, 3804, and 4560. You can see it a little more clearly in the wiki.
+
 <h2>Jiras</h2>
 
 This is a list of Jira tickets at the University of Arizona that relate to this modification. The subversion revisions tagged against each such jira are also listed:
 
+* **KITT-235**: (PCard Administration and Reconciliation)<br />
+  revisions: #1108, #1109, #1638, #1639, #1640, #2239, #2240, #2241, #2242, #2243, #2244, #2640, #3149, #3150, #3152, #3153, #3154, #3804, #3805, #3938, #4010, #4560, #5210, #5211
+* **KITT-383**: (Fix for bug in KITT-235; Entering a partial credit card number and submitting returns server error.)<br />
+  revisions: #2198
+* **KITT-1623**: (Fix for bug in KITT-235; PCDO's Routing to Exception when Reconciler Group Empty or Only Reconciler is also a Cardholder)<br />
+  revisions: #13106
 * **KITT-845**: (Add sales tax, use tax fields to PCard as provided by UA)<br />
   revisions: #8231, #8233, #8300, #8394, #8432
 * **KITT-1025**: (Make Fields Read-Only When PCDO is FINAL)<br />
@@ -61,12 +72,23 @@ has been modified to:
 src/org/kuali/kfs...
 ```
 
-* [`patches/08231_KITT-845_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/08231_KITT-845_cleaned.diff) is the patch file for #8231.
-* [`patches/08394_KITT-845_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/08394_KITT-845_cleaned.diff) is the patch file for #8394.
-* [`patches/09616_KITT-1025_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/09616_KITT-1025_cleaned.diff) is the patch file for #9616.
-* [`patches/09617_KITT-1025_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/09617_KITT-1025_cleaned.diff) is the patch file for #9617.
-* [`patches/09618_KITT-1025_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/09618_KITT-1025_cleaned.diff) is the patch file for #9618.
-* [`patches/09201_KITT-909_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/09201_KITT-909_cleaned.diff) is the patch file for #9201.
+* [`patches/01108-01109_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/01108-01109_KITT-235_cleaned.diff) is the patch file for #01108 through #01109.
+* [`patches/01638-01640_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/01638-01640_KITT-235_cleaned.diff) is the patch file for #01638 through #01640.
+* [`patches/02239-02244_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/02239-02244_KITT-235_cleaned.diff) is the patch file for #02239 through #02244.
+* [`patches/02640_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/02640_KITT-235_cleaned.diff) is the patch file for #02640.
+* [`patches/03149-03150_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/03149-03150_KITT-235_cleaned.diff) is the patch file for #03149 through #03150.
+* [`patches/03152-03154_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/03152-03154_KITT-235_cleaned.diff) is the patch file for #03152 through #03154.
+* [`patches/03804-03805_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/03804-03805_KITT-235_cleaned.diff) is the patch file for #03804 through #03805.
+* [`patches/03938_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/03938_KITT-235_cleaned.diff) is the patch file for #03938.
+* [`patches/04010_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/04010_KITT-235_cleaned.diff) is the patch file for #04010.
+* [`patches/04560_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/04560_KITT-235_cleaned.diff) is the patch file for #04560.
+* [`patches/05210-05211_KITT-235_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/05210-05211_KITT-235_cleaned.diff) is the patch file for #05210 through #05211.
+* [`patches/02198_KITT-383_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/02198_KITT-383_cleaned.diff) is the patch file for #02198.
+* [`patches/13106_KITT-1623_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/13106_KITT-1623_cleaned.diff) is the patch file for #13106.
+* [`patches/08231_KITT-845_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/08231_KITT-845_cleaned.diff) is the patch file for #08231.
+* [`patches/08394_KITT-845_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/08394_KITT-845_cleaned.diff) is the patch file for #08394.
+* [`patches/09616-09618_KITT-1025_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/09616-09618_KITT-1025_cleaned.diff) is the patch file for #09616 through #09618.
+* [`patches/09201_KITT-909_cleaned.diff`](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patches/09201_KITT-909_cleaned.diff) is the patch file for #09201.
 
 <h2>Revisions</h2>
 
@@ -84,6 +106,81 @@ file for every revision listed below for the following reasons:
 
 [Here](MSU-UA-PCard-Contrib-Reconciliation/blob/master/patch_log.txt) is a printout of `svn log -v` for each revision.
 
+*   \#1108 was committed against KITT-235 on 2009-03-27 21:30:50 UTC by <strong>hlo</strong>.
+
+    > KITT-235 Added method to access new system parameter.
+*   \#1109 was committed against KITT-235 on 2009-03-27 21:36:15 UTC by <strong>hlo</strong>.
+
+    > KITT-235 SQL for new parameter.
+*   \#1638 was committed against KITT-235 on 2009-05-02 00:25:33 UTC by <strong>hlo</strong>.
+
+    > KITT-235 Modified to reflect correct Jira ticket number.
+*   \#1639 was committed against KITT-235 on 2009-05-02 00:27:08 UTC by <strong>hlo</strong>.
+
+    > KITT-235 Includes method for new system parameter.
+*   \#1640 was committed against KITT-235 on 2009-05-02 00:28:26 UTC by <strong>hlo</strong>.
+
+    > KITT-235 Includes code to check for new system parameter before displaying.
+*   \#2198 was committed against KITT-383 on 2009-05-28 00:43:49 UTC by <strong>jwingate</strong>.
+
+    > KITT-383, KITT-384
+*   \#2239 was committed against KITT-235 on 2009-05-30 00:34:25 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#2240 was committed against KITT-235 on 2009-05-30 00:34:52 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#2241 was committed against KITT-235 on 2009-05-30 00:35:11 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#2242 was committed against KITT-235 on 2009-05-30 00:35:32 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#2243 was committed against KITT-235 on 2009-05-30 00:36:31 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#2244 was committed against KITT-235 on 2009-05-30 00:55:17 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#2640 was committed against KITT-235 on 2009-06-11 00:54:03 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#3149 was committed against KITT-235 on 2009-06-22 23:58:23 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#3150 was committed against KITT-235 on 2009-06-22 23:59:17 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#3152 was committed against KITT-235 on 2009-06-23 00:05:46 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#3153 was committed against KITT-235 on 2009-06-23 00:47:27 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#3154 was committed against KITT-235 on 2009-06-23 00:57:27 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#3804 was committed against KITT-235 on 2009-07-07 01:01:49 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#3805 was committed against KITT-235 on 2009-07-07 01:02:48 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#3938 was committed against KITT-235 on 2009-07-18 00:37:24 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#4010 was committed against KITT-235 on 2009-07-20 17:49:07 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#4560 was committed against KITT-235 on 2009-08-25 21:38:32 UTC by <strong>jwingate</strong>.
+
+    > KITT-235 PCard Administration and Reconciliation
+*   \#5210 was committed against KITT-235 on 2009-09-30 22:02:28 UTC by <strong>hlo</strong>.
+
+    > KITT-235 Re-adding modifications.
+*   \#5211 was committed against KITT-235 on 2009-09-30 22:07:59 UTC by <strong>hlo</strong>.
+
+    > KITT-235 Re-adding modifications.
 *   \#8231 was committed against KITT-845 on 2010-03-04 02:48:57 UTC by <strong>hlo</strong>.
 
     > KITT-845
@@ -102,10 +199,29 @@ file for every revision listed below for the following reasons:
 *   \#9618 was committed against KITT-1025 on 2010-05-03 19:16:17 UTC by <strong>hlo</strong>.
 
     > KITT-1025 Merging code; added canEdit variable.
+*   \#13106 was committed against KITT-1623 on 2010-09-09 21:59:29 UTC by <strong>jwingate</strong>.
+
+    > KITT-1623 / KFSI-2376 PCDOs Routing to Exception
 
 <h2>Files</h2>
 
-Files **modified** for this modification (18 files)
+Files **created** for this modification (13 files)
+
+    /work/db/scripts/arizona/data.sql
+    /work/src/edu/arizona/kfs/fp/batch
+    /work/src/edu/arizona/kfs/fp/batch/service
+    /work/src/edu/arizona/kfs/fp/batch/service/impl
+    /work/src/edu/arizona/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java
+    /work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardHolder.java
+    /work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardHolder.xml
+    /work/src/edu/arizona/kfs/fp/document/ProcurementCardDocument.java
+    /work/src/edu/arizona/kfs/fp/document/datadictionary/ProcurementCardDocument.xml
+    /work/src/edu/arizona/kfs/fp/document/workflow/ProcurementCardDocument.xml
+    /work/src/edu/arizona/kfs/fp/identity
+    /work/src/edu/arizona/kfs/fp/identity/ProcurementCardHolderDerivedRoleTypeServiceImpl.java
+    /work/src/edu/arizona/kfs/fp/identity/ProcurementCardReconcilerDerivedRoleTypeServiceImpl.java
+
+Files **modified** for this modification (27 files)
 
     /financial-system/kfs/branches/3.0/work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardTransactionDetail.java
     /financial-system/kfs/branches/3.0/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardTransactionDetail.xml
@@ -119,10 +235,19 @@ Files **modified** for this modification (18 files)
     /financial-system/kfs/branches/mod-jwingate/work/src/com/rsmart/kuali/kfs/fp/document/ProcurementCardDocument.java
     /financial-system/kfs/branches/mod-jwingate/work/src/com/rsmart/kuali/kfs/fp/document/validation/impl/ProcurementCardHolderDetailRule.java
     /financial-system/kfs/branches/mod-jwingate/work/src/com/rsmart/kuali/kfs/fp/identity/ProcurementCardReconcilerDerivedRoleTypeServiceImpl.java
+    /work/db/scripts/arizona/schema-oracle.sql
+    /work/src/com/rsmart/kuali/kfs/fp/businessobject/datadictionary/ProcurementCardHolder.xml
+    /work/src/com/rsmart/kuali/kfs/fp/document/ProcurementCardDocument.java
     /work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardTransactionDetail.java
+    /work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardHolderDetail.xml
     /work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardTransactionDetail.xml
     /work/src/edu/arizona/kfs/fp/document/web/struts/ProcurementCardForm.java
     /work/src/edu/arizona/kfs/fp/ojb-fp.xml
+    /work/src/edu/arizona/kfs/fp/spring-fp.xml
+    /work/src/edu/arizona/kfs/gl/GlConstants.java
+    /work/src/edu/arizona/kfs/sys/AZKFSConstants.java
+    /work/src/edu/arizona/kfs/sys/KFSKeyConstants.java
+    /work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java
     /work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java
     /work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag
 
@@ -130,22 +255,100 @@ Files **modified** for this modification (18 files)
 
 For each file that was changed or added for this modification, I've looked at its history in subversion (`svn log <file_name>`) to find whether later fixes were committed against this modification that I might have missed. There were some :) They may be fixes to the modification, or further enhancements, or changes completely unrelated. Please contact the UA for more information about a given revision number, or Jira ticket. Here they are:
 
+*   **#4353** touches: 
+    * `/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java`
+    * `/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag`
+    * `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`
+    * `/work/src/com/rsmart/kuali/kfs/fp/businessobject/datadictionary/ProcurementCardHolder.xml`
+
+    > Merging build-1233
+*   **#4748** touches `/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java`.
+
+    > KITT-414
+*   **#4833** touches `/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java`.
+
+    > KITT-414
+*   **#4893** touches `/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag`.
+
+    > Merging 1261
+*   **#4894** touches: 
+    * `/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java`
+    * `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`
+
+    > Merging 1261
+*   **#4897** touches `/work/src/edu/arizona/kfs/fp/document/datadictionary/ProcurementCardDocument.xml`.
+
+    > Readding modifications
+*   **#5165** touches: 
+    * `/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java`
+    * `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`
+
+    > Merging 1282
+*   **#5316** touches `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`.
+
+    > KITT-534 Modified with temporary fix for pcard batch job.
+*   **#5374** touches `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`.
+
+    > Merging build-1296
+*   **#5480** touches `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`.
+
+    > KITT-534 Re-adding import statements.
+*   **#5481** touches `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`.
+
+    > KITT-534 Removing irrelevant comment.
+*   **#5534** touches: 
+    * `/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java`
+    * `/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag`
+    * `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`
+
+    > merging 1310
+*   **#9223** touches `/work/src/com/rsmart/kuali/kfs/fp/businessobject/datadictionary/ProcurementCardHolder.xml`.
+
+    > KITT-916 PCDO/PCDH Document Search Enhancements
 *   **#9670** touches `/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardTransactionDetail.xml`.
 
     > KITT-1011 - PCard datadictionary changes to allow negative amounts
+*   **#9824** touches `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`.
+
+    > KFSI-1220/KITT-952 PCard Reroute to Reconciler - KFSI-1449/KITT PCDO Action List Title 
+*   **#10303** touches `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`.
+
+    > KFSI-1571
+    > KITT-1040
+    > Fixes from the foundation for this issue.
+*   **#13105** touches `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`.
+
+    > KITT-1609 / KFSI-2216 procurementCardDocument fails
 *   **#13583** touches `/financial-system/kfs/branches/mod-jwingate/work/src/com/rsmart/kuali/kfs/fp/document/ProcurementCardDocument.java`.
 
     > Merge from Trunk 9/27
 
-*   **#13968** touches `/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardTransactionDetail.xml`.
+*   **#13850** touches `/work/src/com/rsmart/kuali/kfs/fp/document/ProcurementCardDocument.java`.
+
+    > KFSI-1449/KITT PCDO Action List Title 
+*   **#13968** touches: 
+    * `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`
+    * `/work/src/com/rsmart/kuali/kfs/fp/businessobject/datadictionary/ProcurementCardHolder.xml`
+    * `/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardTransactionDetail.xml`
 
     > KFSI-2609/KITT-1769 PCDO Enhancements Part 1 
+*   **#13969** touches `/work/src/com/rsmart/kuali/kfs/fp/document/ProcurementCardDocument.java`.
+
+    > KFSI-2557, KITT-1774: Fixing issue where the gl entries post back until approval.
+*   **#14140** touches: 
+    * `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`
+    * `/work/src/com/rsmart/kuali/kfs/fp/document/ProcurementCardDocument.java`
+
+    > KFSI-1449/KITT-985 PCDO Action List Title 
 *   **#14293** touches: 
+    * `/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag`
     * `/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardTransactionDetail.xml`
     * `/work/src/edu/arizona/kfs/fp/businessobject/ProcurementCardTransactionDetail.java`
-    * `/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag`
 
     > KFSI-2613/KITT-1801 PCDO Enhancements Part 2 
+*   **#15081** touches `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`.
+
+    > KFSI-2810/KITT-1952 Fix of Auto-Approve PCDOs  
 *   **#15194** touches `/work/src/edu/arizona/kfs/fp/document/web/struts/ProcurementCardForm.java`.
 
     > KFSI-2797 
@@ -153,25 +356,64 @@ For each file that was changed or added for this modification, I've looked at it
     > Needed to refresh workflow doc to get the state and approval flag set correctly
 *   **#15500** touches: 
     * `/work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java`
+    * `/work/src/edu/arizona/kfs/fp/document/datadictionary/ProcurementCardDocument.xml`
+    * `/work/src/edu/arizona/kfs/fp/document/ProcurementCardDocument.java`
+    * `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`
     * `/work/src/edu/arizona/kfs/fp/document/web/struts/ProcurementCardForm.java`
+    * `/work/src/com/rsmart/kuali/kfs/fp/document/ProcurementCardDocument.java`
 
     > KFSI-2941
     > KITT-2048
     > Fixed logic in PDCO files so that accounting line will get imported. Created new arizona PDCO document and modify corresponding imports to match.
 
+*   **#15720** touches `/work/src/edu/arizona/kfs/fp/document/ProcurementCardDocument.java`.
+
+    > KITT-239, KITT-1775: PCDO Use Tax Mod as pending entries instead of in the batch process.
 *   **#15872** touches `/work/src/edu/arizona/kfs/fp/businessobject/datadictionary/ProcurementCardTransactionDetail.xml`.
 
     > KFSI-3042/KITT-2155 - Fix Enter Sales Tax Field on PCDO to allow Negative Values
+*   **#16181** touches `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`.
+
+    > KFSI-2969/KITT-2219 Procurement Card Reroute fails - add 3 second wait
+*   **#16221** touches `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`.
+
+    > KFSI-2969/KITT-2219 Procurement Card Reroute fails - add 3 second wait
+*   **#18786** touches `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`.
+
+    > KFSI-4029
+    > Made some changes to substantially speed up step5 of the Procurement Card Document Reroute Batch Step.
+*   **#18844** touches `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`.
+
+    > KFSI-4029
+    > Made some changes to substantially speed up step5 of the Procurement Card Document Reroute Batch Step.
+*   **#19734** touches `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`.
+
+    > KFSI-4151/KITT-2609 Update PCDO Auto Approval from Super User to Blanket Approval
+*   **#21020** touches `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`.
+
+    > KFSI-4750, KFSI-4818, KITT-2795: Catch and log validation exceptions during PCDO blanket approval.
+*   **#21152** touches `/work/src/org/kuali/kfs/fp/batch/service/impl/ProcurementCardCreateDocumentServiceImpl.java`.
+
+    > KFSI-4750, KFSI-4818, KITT-2795: In PCDO auto approve, do blanket approve for each doc in a seperate transaction.
 *   **#22742** touches `/work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag`.
 
     > KITT-3006 KFSI-5830 removed hidden param that was causing form to populate incorrectly
+*   **#22871** touches `/work/src/edu/arizona/kfs/fp/document/datadictionary/ProcurementCardDocument.xml`.
 
-(8 revisions)
+    > KFSI-2320
+
+(37 revisions)
 
 The following files were ignored here:
 
     ojb-fp.xml
     arizona-ApplicationResources.properties
+    data.sql
+    schema-oracle.sql
+    AZKFSConstants.java
+    GlConstants.java
+    spring-fp.xml
+    KFSKeyConstants.java
 
 This means, for example, that `ojb-fp.xml` was changed for this modification, but `ojb-fp.xml`'s history was not used to build this list of revisions.
 

@@ -1,0 +1,25 @@
+Index: work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag
+===================================================================
+--- work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag	(revision 1639)
++++ work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag	(revision 1640)
+@@ -92,6 +92,20 @@
+ 		  </c:choose>
+           </div></th>
+        </tr>   
++
++	   <tr>
++	      <c:if test="${KualiForm.enableSalesTaxIndicator}">
++	           <th> <div align="right"><kul:htmlAttributeLabel attributeEntry="${transactionAttributes.transactionSalesTaxAmount}"/></div></th>
++	           <td valign=top><kul:htmlControlAttribute attributeEntry="${transactionAttributes.transactionSalesTaxAmount}" property="document.transactionEntries[${ctr}].transactionSalesTaxAmount" readOnly="false"/></td>
++	           <th> <div align="right"><kul:htmlAttributeLabel attributeEntry="${transactionAttributes.transactionTaxExemptIndicator}"/></div></th>
++	           <td valign=top><kul:htmlControlAttribute attributeEntry="${transactionAttributes.transactionTaxExemptIndicator}" property="document.transactionEntries[${ctr}].transactionTaxExemptIndicator" readOnly="false"/></td>
++	      </c:if>
++	      <c:if test="${!KualiForm.enableSalesTaxIndicator}">
++	           <html:hidden write="false" property="document.transactionEntries[${ctr}].transactionSalesTaxAmount"/>
++	           <html:hidden write="false" property="document.transactionEntries[${ctr}].transactionTaxExemptIndicator"/>
++	      </c:if>
++	   </tr>
++
+     </table>   
+ 	
+     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="datatable">

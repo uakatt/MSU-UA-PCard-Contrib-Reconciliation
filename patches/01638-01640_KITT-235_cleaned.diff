@@ -1,0 +1,66 @@
+Index: work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java
+===================================================================
+--- work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java	(revision 1637)
++++ work/src/org/kuali/kfs/fp/document/web/struts/ProcurementCardForm.java	(revision 1640)
+@@ -45,6 +45,8 @@
+ import org.kuali.rice.kns.util.GlobalVariables;
+ import org.kuali.rice.kns.util.TypedArrayList;
+ 
++import edu.arizona.kfs.sys.AZKFSConstants;
++
+ /**
+  * This class is the form class for the ProcurementCard document. This method extends the parent KualiTransactionalDocumentFormBase
+  * class which contains all of the common form methods and form attributes needed by the Procurment Card document.
+@@ -198,4 +200,14 @@
+         // we'll just cheat...
+         return "targetAccountingLines";
+     }
++
++    /**
++     * Customization for UA Sales Tax Amount and Tax Exempt Indicator.
++     * This method returns the value of the ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND system parameter.
++     * @return
++     */
++    public boolean getEnableSalesTaxIndicator() {        
++        return SpringContext.getBean(ParameterService.class).getIndicatorParameter(ProcurementCardDocument.class, AZKFSConstants.ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND);
++    }
+ }
++
+Index: work/src/edu/arizona/kfs/sys/AZKFSConstants.java
+===================================================================
+--- work/src/edu/arizona/kfs/sys/AZKFSConstants.java	(revision 1637)
++++ work/src/edu/arizona/kfs/sys/AZKFSConstants.java	(revision 1640)
+@@ -22,7 +22,7 @@
+  * This class is used to define our global constants.
+  */
+ public class AZKFSConstants extends JSTLConstants implements ParameterKeyConstants {
+-    public static final String ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND = "ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND";  // for KITT-250
++    public static final String ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND = "ENABLE_SALES_TAX_AMOUNT_TAX_EXEMPT_IND";  // for KITT-235
+     public static final String GL_USETAX_DOCUMENT_TYPE = "USE_TAX_DOCUMENT_TYPE";
+     public static final String GL_USETAX_TAX_REGION = "USE_TAX_TAX_REGION_CODE";
+ }
+Index: work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag
+===================================================================
+--- work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag	(revision 1637)
++++ work/web-root/WEB-INF/tags/fp/procurementCardTransactions.tag	(revision 1640)
+@@ -92,6 +92,20 @@
+ 		  </c:choose>
+           </div></th>
+        </tr>   
++
++	   <tr>
++	      <c:if test="${KualiForm.enableSalesTaxIndicator}">
++	           <th> <div align="right"><kul:htmlAttributeLabel attributeEntry="${transactionAttributes.transactionSalesTaxAmount}"/></div></th>
++	           <td valign=top><kul:htmlControlAttribute attributeEntry="${transactionAttributes.transactionSalesTaxAmount}" property="document.transactionEntries[${ctr}].transactionSalesTaxAmount" readOnly="false"/></td>
++	           <th> <div align="right"><kul:htmlAttributeLabel attributeEntry="${transactionAttributes.transactionTaxExemptIndicator}"/></div></th>
++	           <td valign=top><kul:htmlControlAttribute attributeEntry="${transactionAttributes.transactionTaxExemptIndicator}" property="document.transactionEntries[${ctr}].transactionTaxExemptIndicator" readOnly="false"/></td>
++	      </c:if>
++	      <c:if test="${!KualiForm.enableSalesTaxIndicator}">
++	           <html:hidden write="false" property="document.transactionEntries[${ctr}].transactionSalesTaxAmount"/>
++	           <html:hidden write="false" property="document.transactionEntries[${ctr}].transactionTaxExemptIndicator"/>
++	      </c:if>
++	   </tr>
++
+     </table>   
+ 	
+     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="datatable">

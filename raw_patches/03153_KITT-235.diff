@@ -1,0 +1,19 @@
+Index: financial-system/kfs/trunk/work/db/scripts/arizona/data.sql
+===================================================================
+--- financial-system/kfs/trunk/work/db/scripts/arizona/data.sql	(revision 3152)
++++ financial-system/kfs/trunk/work/db/scripts/arizona/data.sql	(revision 3153)
+@@ -13,3 +13,14 @@
+ INSERT INTO KRNS_PARM_T (NMSPC_CD, PARM_DTL_TYP_CD, PARM_NM, OBJ_ID, VER_NBR, TXT, PARM_DESC_TXT, PARM_TYP_CD, CONS_CD)
+ VALUES ('KFS-FP', 'GeneralErrorCorrection', 'REFERENCE_NUMBER_VALIDATION_IND', SYS_GUID(), 1, 'Y', 'Indicator to turn the reference number validation on/off on the General Error Correction.', 'CONFG', 'A');
+ 
++--creates permissions for editing of target accounting lines by PCard reconciler
++INSERT INTO KRIM_PERM_T (PERM_ID,OBJ_ID,VER_NBR,PERM_TMPL_ID,NM,DESC_TXT,ACTV_IND,NMSPC_CD) VALUES ('1032','5D280C0EE323FEAEE0404F8132D823B5',1,'41','Modify Accounting Lines',null,'Y','KFS-FP');
++
++--associates permission with document, route node and property  - perm_id must match perm_id above
++INSERT INTO KRIM_PERM_ATTR_DATA_T (ATTR_DATA_ID,OBJ_ID,VER_NBR,PERM_ID,KIM_TYP_ID,KIM_ATTR_DEFN_ID,ATTR_VAL) VALUES ('1039','5D280C0EE326FEAEE0404F8139D823B5',1,'1032','52','13','PCDO');
++INSERT INTO KRIM_PERM_ATTR_DATA_T (ATTR_DATA_ID,OBJ_ID,VER_NBR,PERM_ID,KIM_TYP_ID,KIM_ATTR_DEFN_ID,ATTR_VAL) VALUES ('1040','5D280C0EE327FEAEE0404F8140D823B5',1,'1032','52','16','ProcurementCardReconciler');
++INSERT INTO KRIM_PERM_ATTR_DATA_T (ATTR_DATA_ID,OBJ_ID,VER_NBR,PERM_ID,KIM_TYP_ID,KIM_ATTR_DEFN_ID,ATTR_VAL) VALUES ('1041','5D280C0EE328FEAEE0404F8141D823B5',1,'1032','52','6','targetAccountingLines');
++
++--associates permission with role - role_id and perm_id must match role_id and perm_id above
++INSERT INTO KRIM_ROLE_PERM_T (ROLE_PERM_ID,OBJ_ID,VER_NBR,ROLE_ID,PERM_ID,ACTV_IND) VALUES ('1032','5D280C0EE329FEAEE0404F8132D823B5',1,'99','1032','Y');
++
