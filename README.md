@@ -29,7 +29,7 @@ this README contains several informative sections:
 Disclaimer
 ==========
 
-> There are several commits for KITT-235 that contain changes to `data.sql` which is where we were keeping SQL changes during this enhancement. The commits with changes to data.sql include: 1109, 2244, 3153, 3804, and 4560. You can see it a little more clearly in the wiki.
+> There are several commits for KITT-235 that contain changes to `data.sql` which is where we were keeping SQL changes during this enhancement. The commits with changes to data.sql include: 1109, 2244, 3153, 3804, and 4560.
 
 <h2>Jiras</h2>
 
